@@ -1,9 +1,12 @@
+import useAuth from "../../hooks/useAuth";
 import { ProfileContainer } from "./styles";
 
 export function Profile() {
+  const { handleLogout } = useAuth();
+
   return (
     <ProfileContainer>
-      <button>Sair</button>
+      <button onClick={() => handleLogout()}>Sair</button>
       <header>
         <div>
           <strong>Yan Dias</strong>

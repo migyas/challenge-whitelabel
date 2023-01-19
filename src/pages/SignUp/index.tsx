@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import * as zod from "zod";
 import genericLogo from "../../assets/logo-generic.svg";
 import { Select } from "../../components/Select";
+import { createUser } from "../../services/v1/user-service";
 import { optionsBackgroundColor } from "../../utils/mocks/optionsBackgroundColor";
 import { optionsLevel } from "../../utils/mocks/optionsLevel";
 import { FormContainer, SignContainer } from "./styles";
@@ -41,9 +42,19 @@ export default function SignUp() {
     },
   });
 
-  async function onSubmit(data: NewUserFormData) {
-    console.log(data);
-    reset();
+  async function onSubmit({ nivel, corDeFundo, ...rest }: NewUserFormData) {
+    try {
+      await createUser({
+        ...rest,
+        nivel: nivel.value,
+        corDeFundo: corDeFundo.value,
+      });
+    } catch {
+      console.log("deu erro");
+    } finally {
+      console.log("terminou");
+      reset();
+    }
   }
 
   return (

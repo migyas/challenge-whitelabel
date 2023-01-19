@@ -1,3 +1,9 @@
+import { Container } from "./styles";
+
 export default function MyStore() {
-  return <h1>MyStore</h1>;
+  return (
+    <Container>
+      <h1>Minha loja</h1>
+    </Container>
+  );
 }

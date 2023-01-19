@@ -1,19 +1,16 @@
 export function getToken() {
-  return (
-    sessionStorage.getItem(import.meta.env.REACT_TOKEN_KEY) ||
-    localStorage.getItem(import.meta.env.REACT_TOKEN_KEY)
-  );
+  return sessionStorage.getItem("token") || localStorage.getItem("token");
 }
 
 export function setToken(token: string, keepSession?: boolean) {
   if (keepSession) {
-    localStorage.setItem(import.meta.env.REACT_TOKEN_KEY, token);
+    localStorage.setItem("token", token);
   } else {
-    sessionStorage.setItem(import.meta.env.REACT_TOKEN_KEY, token);
+    sessionStorage.setItem("token", token);
   }
 }
 
 export function removeToken() {
-  sessionStorage.removeItem(import.meta.env.REACT_TOKEN_KEY);
-  localStorage.removeItem(import.meta.env.REACT_TOKEN_KEY);
+  sessionStorage.removeItem("token");
+  localStorage.removeItem("token");
 }

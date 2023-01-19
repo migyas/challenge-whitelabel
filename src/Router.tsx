@@ -1,6 +1,8 @@
 import { lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { SuspenseLoader } from "./components/SuspenseLoader";
+import { getToken } from "./utils/authUtils";
+import useAuth from "./hooks/useAuth";
 import { DefaultLayout } from "./layouts/DefaultLayout";
 
 const routesPublic = [
@@ -38,7 +40,7 @@ const routesPrivate = [
 ];
 
 export function Router() {
-  const isAuth = true;
+  const isAuth = !!getToken();
 
   return (
     <Routes>

@@ -1,6 +1,7 @@
-import { createContext, useEffect, useState } from "react";
-import { getToken, removeToken, setToken } from "../../utils/authUtils";
+import { createContext, useState } from "react";
+import { removeToken, setToken } from "../../utils/authUtils";
 import { NewUserFormData as LoginPayload } from "../../pages/SignUp";
+import { redirect } from "react-router-dom";
 
 type User = {
   nome: string;
@@ -11,7 +12,7 @@ export interface UseAuthProps {
   isAuth: boolean;
   loading: boolean;
   user: User | Record<string, any>;
-  handleLogin(userData: LoginPayload, keepAuth?: boolean): Promise<void>;
+  handleLogin(userData: User, keepAuth?: boolean): Promise<void>;
   handleLogout(): Promise<void>;
 }
 
@@ -32,59 +33,15 @@ export const AuthProvider = ({ children }: { children?: React.ReactNode }) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<User | Record<string, any>>({});
 
-  useEffect(() => {
-    (async () => {
-      const token = getToken();
-      if (token && !isAuth) {
-        setLoading(true);
-        try {
-          setUser({
-            email: "admin@teste.com",
-            name: "José Fernandes Silva",
-          });
-          setIsAuth(true);
-        } catch (err) {
-          console.log(err);
-          setIsAuth(false);
-        }
-      }
-      setLoading(false);
-    })();
-  }, []);
-
   const handleLogin = async (userData: LoginPayload, keepAuth?: boolean) => {
     setLoading(true);
-
     try {
-      const data = await new Promise<{
-        user: User;
-        token: string;
-      }>((resolve, reject) => {
-        setTimeout(() => {
-          if (
-            userData.email === "admin@teste.com" &&
-            userData.senha === "12345678"
-          ) {
-            resolve({
-              user: {
-                email: userData.email,
-                nome: "José Fernandes Silva",
-              },
-              token:
-                "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY1ODUxNjk5MywiaWF0IjoxNjU4NTE2OTkzfQ.k0JkTc4LAH7R92TONUGYHCyahQUVWFrb1GFuFwjDTkg",
-            });
-          } else {
-            reject(new Error("Usuário não encontrado"));
-          }
-        }, 2000);
-      });
-      // const { data: company } = await getEmpresaById(data.user.idEmpresa);
-      setToken(JSON.stringify(data.token), keepAuth);
-      // api.defaults.headers.Authorization = `Bearer ${data.token}`;
-      setUser(data.user);
       setIsAuth(true);
-      // history.push("/dashboard");
+      setUser(userData);
+      setToken(JSON.stringify(userData.email), keepAuth);
+      redirect("/");
       setLoading(false);
+      window.location.reload();
     } catch (err) {
       setLoading(false);
       throw new Error((err as Error).message);
@@ -92,15 +49,14 @@ export const AuthProvider = ({ children }: { children?: React.ReactNode }) => {
   };
 
   const handleLogout = async () => {
-    // setLoading(true);
+    setLoading(true);
 
     try {
-      // await api.delete('/auth/logout');
       setIsAuth(false);
       setUser({});
       removeToken();
-      // api.defaults.headers.Authorization = undefined;
-      // history.push("/login");
+      redirect("/signin");
+      window.location.reload();
     } catch (err) {
       throw new Error((err as Error).message);
     }
