@@ -28,13 +28,13 @@ export function Sidebar() {
       <nav>
         <SidebarNavItem to="/">
           <ChartPieSlice size={18} />
-          <strong>Overview</strong>
+          <strong>Geral</strong>
         </SidebarNavItem>
         <SidebarNavItem to="/users">
           <Users size={18} />
           <strong>Usuários</strong>
         </SidebarNavItem>
-        <SidebarNavItem to="/my-shop">
+        <SidebarNavItem to="/my-store">
           <Storefront size={18} />
           <strong>Minha loja</strong>
         </SidebarNavItem>

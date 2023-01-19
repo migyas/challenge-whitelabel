@@ -5,3 +5,12 @@ export const Container = styled.div`
   background: ${(props) => props.theme["gray-100"]};
   display: flex;
 `;
+
+export const MainContent = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    color: ${(props) => props.theme["gray-600"]};
+  }
+`;

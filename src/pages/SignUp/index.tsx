@@ -27,7 +27,7 @@ const newUserFormValidationSchema = zod.object({
   senha: zod.string(),
 });
 
-type NewUserFormData = zod.infer<typeof newUserFormValidationSchema>;
+export type NewUserFormData = zod.infer<typeof newUserFormValidationSchema>;
 
 export default function SignUp() {
   const { register, handleSubmit, control, reset } = useForm<NewUserFormData>({

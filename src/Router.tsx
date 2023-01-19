@@ -21,8 +21,8 @@ const routesPrivate = [
     isIndex: true,
   },
   {
-    path: "/my-shop",
-    element: lazy(() => import("./pages/Shop")),
+    path: "/my-store",
+    element: lazy(() => import("./pages/MyStore")),
     isIndex: false,
   },
   {
@@ -38,7 +38,7 @@ const routesPrivate = [
 ];
 
 export function Router() {
-  const isAuth = false;
+  const isAuth = true;
 
   return (
     <Routes>

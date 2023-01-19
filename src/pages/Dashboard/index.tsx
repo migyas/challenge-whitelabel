@@ -1,7 +1,9 @@
+import { Container } from "./styles";
+
 export default function Dashboard() {
   return (
-    <div style={{ flex: 1 }}>
-      <h1>Dashboard</h1>
-    </div>
+    <Container>
+      <h1>Geral</h1>
+    </Container>
   );
 }
