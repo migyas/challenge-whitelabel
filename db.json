@@ -2,21 +2,6 @@
   "users": [
     {
       "nome": "Yan Dias",
-      "telefone": "123123123asda",
-      "email": "admin@greenbelt.com",
-      "senha": "12345678",
-      "corDeFundo": {
-        "label": "Azul",
-        "value": "blue"
-      },
-      "nivel": {
-        "label": "Admin",
-        "value": "admin"
-      },
-      "id": 1
-    },
-    {
-      "nome": "Yan Dias",
       "telefone": "1212121",
       "email": "asdasd@dasdas",
       "senha": "12121212",
