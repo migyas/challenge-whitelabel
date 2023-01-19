@@ -1,3 +1,7 @@
 export default function Dashboard() {
-  return <h1>Dashboard</h1>;
+  return (
+    <div style={{ flex: 1 }}>
+      <h1>Dashboard</h1>
+    </div>
+  );
 }

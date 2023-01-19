@@ -21,7 +21,7 @@ const routesPrivate = [
     isIndex: true,
   },
   {
-    path: "/shop",
+    path: "/my-shop",
     element: lazy(() => import("./pages/Shop")),
     isIndex: false,
   },
@@ -30,19 +30,25 @@ const routesPrivate = [
     element: lazy(() => import("./pages/Users")),
     isIndex: false,
   },
+  {
+    path: "/settings",
+    element: lazy(() => import("./pages/Settings")),
+    isIndex: false,
+  },
 ];
 
 export function Router() {
-  const isAuth = true;
+  const isAuth = false;
 
   return (
     <Routes>
       {isAuth ? (
         <Route path="/" element={<DefaultLayout />}>
-          {routesPrivate.map((route) => {
+          {routesPrivate.map((route, index) => {
             if (route.isIndex) {
               return (
                 <Route
+                  key={index}
                   index
                   element={
                     <SuspenseLoader>
@@ -52,8 +58,10 @@ export function Router() {
                 />
               );
             }
+
             return (
               <Route
+                key={route.path}
                 path={route.path}
                 element={
                   <SuspenseLoader>

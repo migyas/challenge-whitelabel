@@ -4,11 +4,12 @@ import { GlobalStyle } from "./global";
 import { Router } from "./Router";
 import { defaultTheme } from "./styles/themes/default";
 import { Suspense } from "react";
+import { SuspenseLoader } from "./components/SuspenseLoader";
 
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Suspense fallback={"...loading"}>
+      <Suspense fallback={<SuspenseLoader />}>
         <BrowserRouter>
           <Router />
         </BrowserRouter>
