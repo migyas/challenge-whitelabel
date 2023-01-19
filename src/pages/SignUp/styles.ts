@@ -71,20 +71,6 @@ export const FormContainer = styled.form`
     font-size: 0.875rem;
   }
 
-  select {
-    width: 100%;
-    border: 1px solid ${(props) => props.theme["gray-100"]};
-    border-radius: 5px;
-    height: 41px;
-    padding: 0.75rem;
-    font-size: 0.875rem;
-
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    text-indent: 1px;
-    text-overflow: "";
-  }
-
   button[type="submit"] {
     height: 45px;
     border-radius: 5px;
