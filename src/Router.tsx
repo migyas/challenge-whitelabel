@@ -90,6 +90,7 @@ export function Router() {
           }
         />
       ))}
+      {!isAuth && <Route path="*" element={<Navigate to="/signin" />} />}
     </Routes>
   );
 }
