@@ -15,7 +15,7 @@ export const MainContent = styled.div`
   height: 100vh;
 
   h1 {
-    color: ${(props) => props.theme['gray-600']};
+    color: ${(props) => props.theme['gray-400']};
     font-size: 1.75rem;
   }
 `;
