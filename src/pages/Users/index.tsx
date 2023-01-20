@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {getAllUsers} from '@/services/v1/user-service';
-import {Container, UsersList} from './styles';
+import {ButtonAdd, Container, UsersList} from './styles';
 
 interface User {
   nivel: string;
@@ -38,7 +38,7 @@ export default function Users() {
     <Container>
       <h1>Usuários</h1>
       <div>
-        <button>Adicionar Usuário</button>
+        <ButtonAdd>Adicionar Usuário</ButtonAdd>
       </div>
       <UsersList>
         <table>
