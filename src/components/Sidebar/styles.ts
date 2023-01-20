@@ -1,20 +1,20 @@
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import {NavLink} from 'react-router-dom';
+import styled from 'styled-components';
 
 export const SidebarNavItem = styled(NavLink)`
   display: flex;
   align-items: center;
   padding: 1rem;
   text-decoration: none;
-  color: #9fa2b4;
+  color: ${(props) => props.theme['bg-sidebar-default']};
   transition: all 0.2s;
   gap: 0.5rem;
 
   &.active {
-    background: ${(props) => props.theme["gray-700"]};
-    border-left: 4px solid ${(props) => props.theme["yellow-500"]};
+    background: ${(props) => props.theme['gray-700']};
+    border-left: 4px solid ${(props) => props.theme['yellow-500']};
     padding: 1rem 1.75rem;
-    color: ${(props) => props.theme["gray-100"]};
+    color: ${(props) => props.theme['gray-100']};
   }
 `;
 
@@ -65,7 +65,7 @@ export const SidebarContainer = styled.div`
 
   header {
     padding: 2rem 1rem;
-    color: ${(props) => props.theme["gray-100"]};
+    color: ${(props) => props.theme['gray-100']};
     gap: 0.5rem;
     display: flex;
     align-items: baseline;
@@ -107,7 +107,7 @@ export const SidebarContainer = styled.div`
   footer {
     display: flex;
     flex-direction: column;
-    border-top: 1px solid ${(props) => props.theme["gray-100"]};
+    border-top: 1px solid ${(props) => props.theme['gray-100']};
     padding-top: 1rem;
     margin-bottom: 2rem;
 
@@ -129,19 +129,19 @@ export const SidebarContainer = styled.div`
     justify-content: center;
     cursor: pointer;
     padding: 1rem;
-    background-color: ${(props) => props.theme["gray-300"]};
+    background-color: ${(props) => props.theme['gray-300']};
     transition: all 0.3s;
 
     &:hover {
-      background-color: ${(props) => props.theme["gray-700"]};
+      background-color: ${(props) => props.theme['gray-700']};
 
       svg {
-        color: ${(props) => props.theme["gray-100"]};
+        color: ${(props) => props.theme['gray-100']};
       }
     }
 
     svg {
-      color: ${(props) => props.theme["gray-900"]};
+      color: ${(props) => props.theme['gray-900']};
       transform: rotate(-180deg);
       transition: transform 0.3s;
     }
@@ -166,7 +166,7 @@ export const ButtonContainer = styled.div`
     cursor: pointer;
 
     &:hover {
-      background-color: ${(props) => props.theme["gray-700"]};
+      background-color: ${(props) => props.theme['gray-700']};
     }
 
     img {

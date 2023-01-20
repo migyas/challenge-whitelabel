@@ -8,6 +8,15 @@
       "nivel": "operator",
       "corDeFundo": "gray",
       "id": 2
+    },
+    {
+      "nome": "Testando bro",
+      "telefone": "61993868323",
+      "email": "admin@greenbelt.com",
+      "senha": "12345678",
+      "nivel": "admin",
+      "corDeFundo": "blue",
+      "id": 3
     }
   ]
 }

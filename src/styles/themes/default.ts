@@ -19,6 +19,7 @@ export const defaultTheme = {
   'yellow-500': '#FBA94C',
   'blue-500': '#351A96',
   'bg-main': '#363740',
+  'bg-sidebar-default': '#9fa2b4',
   zIndexes: {
     hide: -1,
     auto: 'auto',

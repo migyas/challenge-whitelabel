@@ -1,20 +1,20 @@
 import {useEffect, useState} from 'react';
 import {getAllUsers} from '@/services/v1/user-service';
-import {ButtonAdd, Container, UsersList} from './styles';
+import {BackgroundColorDot, ButtonAdd, Container, UsersList} from './styles';
 import Modal from '@/components/Modal/Modal';
 import useDisclosure from '@/hooks/useDisclosure';
-import {ModalBody} from '@/components/Modal';
+import {ModalBody, ModalFooterBlank} from '@/components/Modal';
 
 interface User {
   nivel: string;
   nome: string;
   telefone: string;
-  corDeFundo: string;
+  corDeFundo: 'gray' | 'blue';
   email: string;
   senha: string;
 }
 
-interface VariantRole {
+interface VariantsType {
   [key: string]: string;
 }
 
@@ -22,9 +22,14 @@ export default function Users() {
   const [users, setUsers] = useState<User[]>([]);
   const {isOpen, toggle} = useDisclosure();
 
-  const VARIANTS_ROLES: VariantRole = {
+  const VARIANTS_ROLES: VariantsType = {
     operator: 'Lojista',
     admin: 'Admin',
+  };
+
+  const VARIANTS_BACKGROUNDS_COLOURS: VariantsType = {
+    gray: 'Cinza (Padrão)',
+    blue: 'Azul',
   };
 
   async function getUsers() {
@@ -52,6 +57,7 @@ export default function Users() {
               <th>Telefone</th>
               <th>E-mail</th>
               <th>Nível</th>
+              <th>Cor de Fundo</th>
             </tr>
           </thead>
           <tbody>
@@ -62,6 +68,12 @@ export default function Users() {
                   <td>{user.telefone}</td>
                   <td>{user.email}</td>
                   <td>{VARIANTS_ROLES[user.nivel]}</td>
+                  <td>
+                    <div>
+                      <BackgroundColorDot color={user.corDeFundo} />
+                      {VARIANTS_BACKGROUNDS_COLOURS[user.corDeFundo]}
+                    </div>
+                  </td>
                 </tr>
               );
             })}
@@ -69,7 +81,12 @@ export default function Users() {
         </table>
       </UsersList>
       <Modal isOpen={isOpen} toggle={toggle} size="lg">
-        <ModalBody>MODAL IHULL</ModalBody>
+        <ModalBody>
+          <form>
+            <input type="text" />
+          </form>
+        </ModalBody>
+        <ModalFooterBlank />
       </Modal>
     </Container>
   );

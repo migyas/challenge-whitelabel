@@ -23,22 +23,50 @@ export const ButtonAdd = styled.button`
   }
 `;
 
+const STATUS_COLORS = {
+  gray: 'bg-sidebar-default',
+  blue: 'blue-500',
+} as const;
+
+interface StatusProps {
+  color: keyof typeof STATUS_COLORS;
+}
+
+export const BackgroundColorDot = styled.span<StatusProps>`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &::before {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background: ${(props) => props.theme[STATUS_COLORS[props.color]]};
+  }
+`;
+
 export const UsersList = styled.div`
-  flex: 1;
-  overflow: auto;
+  display: block;
+  white-space: nowrap;
+  overflow: auto hidden;
+  max-width: 100%;
+  width: 100%;
 
   table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 600px;
+    font-variant-numeric: lining-nums tabular-nums;
 
     th {
       background-color: ${(props) => props.theme['gray-600']};
       padding: 1rem;
-      text-align: left;
       color: ${(props) => props.theme['gray-100']};
       font-size: 0.875rem;
       line-height: 1.6;
+      text-align: start;
+      padding-inline-start: 1.5rem;
+      padding-inline-end: 1.5rem;
 
       &:first-child {
         border-top-left-radius: 8px;
@@ -51,20 +79,34 @@ export const UsersList = styled.div`
       }
     }
 
+    tr {
+      word-wrap: break-word;
+    }
+
     td {
       background-color: ${(props) => props.theme['gray-700']};
       border-top: 4px solid ${(props) => props.theme['gray-100']};
       padding: 1rem;
       font-size: 0.875rem;
       line-height: 1.6;
+      padding-inline-start: 1.5rem;
+      padding-inline-end: 1.5rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
 
       &:first-child {
-        width: 40%;
+        width: 60%;
         padding-left: 1.5rem;
       }
 
       &:last-child {
         padding-right: 1.5rem;
+        width: 60%;
+
+        div {
+          display: flex;
+          gap: 0.5rem;
+        }
       }
     }
   }
