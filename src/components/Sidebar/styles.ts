@@ -18,17 +18,21 @@ export const SidebarNavItem = styled(NavLink)`
   }
 `;
 
-export const SidebarContainer = styled.div`
-  /* width: 100vw; */
+export const SidebarContainer = styled.div``;
 
+export const SidebarOverlay = styled.div`
   @media (max-width: 450px) {
-    /* position: absolute; */
-    /* background: red; */
-
-    &.sidebar__overlay {
-      /* content: '';
-      background: red;
-      width: 100vw; */
+    &.--expand {
+      position: absolute;
+      content: ' ';
+      background: ${(props) => props.theme['gray-700']};
+      transition: all 0.8s;
+      opacity: 0.4;
+      min-width: 100vw;
+      height: 100%;
+      top: 0;
+      right: 0;
+      z-index: 1000;
     }
   }
 `;

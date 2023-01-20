@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import {
   ChartPieSlice,
   Users,
@@ -15,6 +14,7 @@ import {
   SidebarContainer,
   SidebarContent,
   SidebarNavItem,
+  SidebarOverlay,
 } from './styles';
 import useDisclosure from '@/hooks/useDisclosure';
 
@@ -23,7 +23,11 @@ export function Sidebar() {
 
   return (
     <SidebarContainer>
-      <div className="sidebar__overlay"></div>
+      <SidebarOverlay
+        className={classNames('', {
+          '--expand': !isOpen,
+        })}
+      />
       <SidebarContent
         className={classNames('', {
           '--expand': isOpen,
