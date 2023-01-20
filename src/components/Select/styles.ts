@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
@@ -20,7 +20,7 @@ export const Container = styled.div`
   .select__input-wrapper {
     width: 100%;
     position: relative;
-    color: ${(props) => props.theme["gray-700"]};
+    color: ${(props) => props.theme['gray-700']};
 
     .input-wrapper__input {
       width: 100%;
@@ -29,7 +29,7 @@ export const Container = styled.div`
       outline: none;
       transition: all 0.3s;
       background: none;
-      border: 1px solid ${(props) => props.theme["gray-100"]};
+      border: 1px solid ${(props) => props.theme['gray-100']};
       border-radius: 5px;
       display: flex;
       align-items: center;
@@ -64,7 +64,7 @@ export const Container = styled.div`
       background-color: #fff;
       border-radius: 5px;
       list-style: none;
-      z-index: 1500;
+      z-index: ${(props) => props.theme.zIndexes.popover};
       transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
       transform: scaleY(0.9);
       box-shadow: 0 0 10px 0px #0000001a;
@@ -82,17 +82,17 @@ export const Container = styled.div`
         display: flex;
         align-items: center;
         justify-content: space-between;
-        color: ${(props) => props.theme["gray-800"]};
+        color: ${(props) => props.theme['gray-800']};
         font-size: 0.875rem;
 
         &:hover {
-          background-color: ${(props) => props.theme["gray-100"]};
+          background-color: ${(props) => props.theme['gray-100']};
         }
 
         &.--no-options {
           cursor: default;
           justify-content: center;
-          color: ${(props) => props.theme["bg-main"]};
+          color: ${(props) => props.theme['bg-main']};
 
           &:hover {
             background-color: #fff;
@@ -128,21 +128,21 @@ export const Container = styled.div`
 
   &.--success {
     .select__helper-text {
-      color: ${(props) => props.theme["yellow-500"]};
+      color: ${(props) => props.theme['yellow-500']};
     }
 
     .select__input {
-      border-color: ${(props) => props.theme["yellow-500"]};
+      border-color: ${(props) => props.theme['yellow-500']};
     }
   }
 
   &.--error {
     .select__helper-text {
-      color: ${(props) => props.theme["gray-700"]};
+      color: ${(props) => props.theme['gray-700']};
     }
 
     .input-wrapper__input {
-      border-color: ${(props) => props.theme["red-500"]};
+      border-color: ${(props) => props.theme['red-500']};
     }
   }
 
@@ -156,8 +156,8 @@ export const Container = styled.div`
     }
 
     .select__input-wrapper {
-      background-color: ${(props) => props.theme["gray-100"]};
-      border-color: ${(props) => props.theme["yellow-500"]};
+      background-color: ${(props) => props.theme['gray-100']};
+      border-color: ${(props) => props.theme['yellow-500']};
     }
   }
 `;

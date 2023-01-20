@@ -1,6 +1,9 @@
 import {useEffect, useState} from 'react';
 import {getAllUsers} from '@/services/v1/user-service';
 import {ButtonAdd, Container, UsersList} from './styles';
+import Modal from '@/components/Modal/Modal';
+import useDisclosure from '@/hooks/useDisclosure';
+import {ModalBody} from '@/components/Modal';
 
 interface User {
   nivel: string;
@@ -17,6 +20,7 @@ interface VariantRole {
 
 export default function Users() {
   const [users, setUsers] = useState<User[]>([]);
+  const {isOpen, toggle} = useDisclosure();
 
   const VARIANTS_ROLES: VariantRole = {
     operator: 'Lojista',
@@ -38,7 +42,7 @@ export default function Users() {
     <Container>
       <h1>Usuários</h1>
       <div>
-        <ButtonAdd>Adicionar Usuário</ButtonAdd>
+        <ButtonAdd onClick={toggle}>Adicionar Usuário</ButtonAdd>
       </div>
       <UsersList>
         <table>
@@ -64,6 +68,9 @@ export default function Users() {
           </tbody>
         </table>
       </UsersList>
+      <Modal isOpen={isOpen} toggle={toggle} size="lg">
+        <ModalBody>MODAL IHULL</ModalBody>
+      </Modal>
     </Container>
   );
 }
