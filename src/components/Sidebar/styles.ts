@@ -19,15 +19,30 @@ export const SidebarNavItem = styled(NavLink)`
 `;
 
 export const SidebarContainer = styled.div`
+  /* width: 100vw; */
+
+  @media (max-width: 450px) {
+    /* position: absolute; */
+    /* background: red; */
+
+    &.sidebar__overlay {
+      /* content: '';
+      background: red;
+      width: 100vw; */
+    }
+  }
+`;
+
+export const SidebarContent = styled.div`
   background: #363740;
   width: 16rem;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: all 0.3s;
 
-  &.--mobile {
+  &.--expand {
     width: 3.75rem;
 
     header {
@@ -150,6 +165,18 @@ export const SidebarContainer = styled.div`
       svg {
         transform: rotate(0deg);
       }
+    }
+  }
+
+  @media (max-width: 450px) {
+    position: fixed;
+
+    z-index: ${(props) => props.theme.zIndexes.sidebar};
+
+    &.sidebar__overlay {
+      content: '';
+      background: red;
+      width: 100vw;
     }
   }
 `;

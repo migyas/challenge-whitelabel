@@ -6,6 +6,10 @@ export const Container = styled.div`
   flex-direction: column;
   flex: 1;
   gap: 2rem;
+
+  @media (max-width: 450px) {
+    margin-left: 4rem;
+  }
 `;
 
 export const ButtonAdd = styled.button`
@@ -56,7 +60,6 @@ export const UsersList = styled.div`
   table {
     width: 100%;
     border-collapse: collapse;
-    font-variant-numeric: lining-nums tabular-nums;
 
     th {
       background-color: ${(props) => props.theme['gray-600']};
@@ -79,10 +82,6 @@ export const UsersList = styled.div`
       }
     }
 
-    tr {
-      word-wrap: break-word;
-    }
-
     td {
       background-color: ${(props) => props.theme['gray-700']};
       border-top: 4px solid ${(props) => props.theme['gray-100']};
@@ -95,13 +94,12 @@ export const UsersList = styled.div`
       padding-bottom: 1rem;
 
       &:first-child {
-        width: 60%;
+        width: 40%;
         padding-left: 1.5rem;
       }
 
       &:last-child {
         padding-right: 1.5rem;
-        width: 60%;
 
         div {
           display: flex;
