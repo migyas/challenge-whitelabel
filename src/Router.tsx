@@ -1,40 +1,39 @@
-import { lazy } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import { SuspenseLoader } from "./components/SuspenseLoader";
-import { getToken } from "./utils/authUtils";
-import useAuth from "./hooks/useAuth";
-import { DefaultLayout } from "./layouts/DefaultLayout";
+import {lazy} from 'react';
+import {Routes, Route, Navigate} from 'react-router-dom';
+import {SuspenseLoader} from '@/components/SuspenseLoader';
+import {getToken} from '@/utils/authUtils';
+import {DefaultLayout} from '@/layouts/DefaultLayout';
 
 const routesPublic = [
   {
-    path: "/signin",
-    element: lazy(() => import("./pages/SignIn")),
+    path: '/signin',
+    element: lazy(() => import('@/pages/SignIn')),
   },
   {
-    path: "/signup",
-    element: lazy(() => import("./pages/SignUp")),
+    path: '/signup',
+    element: lazy(() => import('@/pages/SignUp')),
   },
 ];
 
 const routesPrivate = [
   {
-    path: "/",
-    element: lazy(() => import("./pages/Dashboard")),
+    path: '/',
+    element: lazy(() => import('@/pages/Dashboard')),
     isIndex: true,
   },
   {
-    path: "/my-store",
-    element: lazy(() => import("./pages/MyStore")),
+    path: '/my-store',
+    element: lazy(() => import('@/pages/MyStore')),
     isIndex: false,
   },
   {
-    path: "/users",
-    element: lazy(() => import("./pages/Users")),
+    path: '/users',
+    element: lazy(() => import('@/pages/Users')),
     isIndex: false,
   },
   {
-    path: "/settings",
-    element: lazy(() => import("./pages/Settings")),
+    path: '/settings',
+    element: lazy(() => import('@/pages/Settings')),
     isIndex: false,
   },
 ];

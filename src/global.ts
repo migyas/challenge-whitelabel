@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import {createGlobalStyle} from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -7,14 +7,9 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  /* :focus {
-    outline: 0;
-    box-shadow: 0 0 0 2px ${(props) => props.theme["yellow-500"]};
-  } */
-
   body {
-    background: ${(props) => props.theme["bg-main"]};
-    color: ${(props) => props.theme["gray-300"]};
+    background: ${(props) => props.theme['bg-main']};
+    color: ${(props) => props.theme['gray-300']};
     -webkit-font-smoothing: antialiased;
   }
 

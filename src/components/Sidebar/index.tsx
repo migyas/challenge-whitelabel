@@ -1,24 +1,24 @@
-import { useState } from "react";
+import {useState} from 'react';
 import {
   ChartPieSlice,
   Users,
   Storefront,
   GearSix,
   CaretDoubleRight,
-} from "phosphor-react";
+} from 'phosphor-react';
 
-import { classNames } from "../../utils/classNames";
-import whiteLabelLogo from "../../assets/logo.svg";
+import {classNames} from '@/utils/classNames';
+import whiteLabelLogo from '@/assets/logo.svg';
 
-import { ButtonContainer, SidebarContainer, SidebarNavItem } from "./styles";
+import {ButtonContainer, SidebarContainer, SidebarNavItem} from './styles';
 
 export function Sidebar() {
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
 
   return (
     <SidebarContainer
-      className={classNames("", {
-        "--mobile": isOpenSidebar,
+      className={classNames('', {
+        '--mobile': isOpenSidebar,
       })}
     >
       <header>
@@ -46,8 +46,8 @@ export function Sidebar() {
         </SidebarNavItem>
       </footer>
       <ButtonContainer
-        className={classNames("button", {
-          "--rotate": isOpenSidebar,
+        className={classNames('button', {
+          '--rotate': isOpenSidebar,
         })}
         onClick={() => setIsOpenSidebar(!isOpenSidebar)}
       >

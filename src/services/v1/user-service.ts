@@ -1,23 +1,23 @@
-import { api } from "../api";
+import {api} from '../api';
 
 async function getAllUsers() {
-  const { data } = await api.get("/users");
+  const {data} = await api.get('/users');
   return data;
 }
 
 async function createUser(user: any) {
-  const { data } = await api.post("/users", user);
+  const {data} = await api.post('/users', user);
   return data;
 }
 
 async function updateUser(user: any, id: string) {
-  const { data } = await api.put(`/users/${id}`, user);
+  const {data} = await api.put(`/users/${id}`, user);
   return data;
 }
 
 async function deleteUser(id: string) {
-  const { data } = await api.delete(`/users/${id}`);
+  const {data} = await api.delete(`/users/${id}`);
   return data;
 }
 
-export { getAllUsers, createUser, updateUser, deleteUser };
+export {getAllUsers, createUser, updateUser, deleteUser};

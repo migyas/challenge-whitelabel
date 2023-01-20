@@ -1,8 +1,8 @@
-import useAuth from "../../hooks/useAuth";
-import { ProfileContainer } from "./styles";
+import useAuth from '@/hooks/useAuth';
+import {ProfileContainer} from './styles';
 
 export function Profile() {
-  const { handleLogout } = useAuth();
+  const {handleLogout} = useAuth();
 
   return (
     <ProfileContainer>

@@ -1,16 +1,16 @@
-import { useEffect, useRef, useState } from "react";
-import arrowDown from "../../assets/arrow-down.svg";
-import useClickOutside from "../../hooks/useClickOutside";
-import useDisclosure from "../../hooks/useDisclosure";
-import { classNames } from "../../utils/classNames";
-import { Container } from "./styles";
+import {useEffect, useRef, useState} from 'react';
+import arrowDown from '@/assets/arrow-down.svg';
+import useClickOutside from '@/hooks/useClickOutside';
+import useDisclosure from '@/hooks/useDisclosure';
+import {classNames} from '@/utils/classNames';
+import {Container} from './styles';
 
 interface Option<T = any> {
   label: string;
   value: T;
 }
 
-type Position = "top" | "bottom";
+type Position = 'top' | 'bottom';
 
 interface SelectProps {
   value?: Option;
@@ -33,8 +33,8 @@ export function Select({
   success,
   disabled,
 }: SelectProps) {
-  const { isOpen, toggle, close } = useDisclosure();
-  const [position, setPosition] = useState<Position>("bottom");
+  const {isOpen, toggle, close} = useDisclosure();
+  const [position, setPosition] = useState<Position>('bottom');
   const inputRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLUListElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -43,29 +43,29 @@ export function Select({
 
   useEffect(() => {
     if (isOpen && dropdownRef.current && inputRef.current) {
-      const { height } = dropdownRef.current.getBoundingClientRect();
+      const {height} = dropdownRef.current.getBoundingClientRect();
       const inputRect = inputRef.current.getBoundingClientRect();
       const topY = height + height * 0.1 + inputRect.height + 5 + inputRect.y;
 
       if (topY < window.innerHeight) {
-        setPosition("bottom");
+        setPosition('bottom');
       } else {
-        setPosition("top");
+        setPosition('top');
       }
     }
 
     window.addEventListener(
-      "scroll",
+      'scroll',
       () => {
         if (isOpen) {
           close();
         }
       },
-      { passive: true }
+      {passive: true},
     );
 
     return () =>
-      window.removeEventListener("scroll", () => {
+      window.removeEventListener('scroll', () => {
         if (isOpen) {
           close();
         }
@@ -79,10 +79,10 @@ export function Select({
 
   return (
     <Container
-      className={classNames("select", {
-        "--success": success,
-        "--error": error,
-        "--disabled": disabled,
+      className={classNames('select', {
+        '--success': success,
+        '--error': error,
+        '--disabled': disabled,
       })}
     >
       {labelText && (
@@ -93,22 +93,22 @@ export function Select({
       <div className="select__input-wrapper" ref={wrapperRef}>
         <div className="input-wrapper__input" onClick={toggle} ref={inputRef}>
           <span
-            className={classNames("input__value", {
-              "--placeholder": !value,
+            className={classNames('input__value', {
+              '--placeholder': !value,
             })}
           >
-            {value ? value.label : "Selecione..."}
+            {value ? value.label : 'Selecione...'}
           </span>
           <img
             src={arrowDown}
-            className={classNames("input__arrow", {
-              "--rotate": isOpen,
+            className={classNames('input__arrow', {
+              '--rotate': isOpen,
             })}
           />
         </div>
         <ul
           className={classNames(`input-wrapper__select-options --${position}`, {
-            "--is-open": isOpen,
+            '--is-open': isOpen,
           })}
           ref={dropdownRef}
         >

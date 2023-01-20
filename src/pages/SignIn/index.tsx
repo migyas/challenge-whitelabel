@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { NavLink } from "react-router-dom";
-import genericLogo from "../../assets/logo-generic.svg";
-import useAuth from "../../hooks/useAuth";
-import { getAllUsers } from "../../services/v1/user-service";
-import { getToken } from "../../utils/authUtils";
-import { FormContainer, SignContainer } from "./styles";
-import { useNavigate } from "react-router-dom";
+import {useState, useEffect} from 'react';
+import {useForm} from 'react-hook-form';
+import {NavLink} from 'react-router-dom';
+import genericLogo from '@/assets/logo-generic.svg';
+import useAuth from '@/hooks/useAuth';
+import {getAllUsers} from '@/services/v1/user-service';
+import {getToken} from '@/utils/authUtils';
+import {FormContainer, SignContainer} from './styles';
+import {useNavigate} from 'react-router-dom';
 
 type User = {
   nome: string;
@@ -14,10 +14,10 @@ type User = {
 };
 
 export default function SignIn() {
-  const { register, handleSubmit } = useForm();
+  const {register, handleSubmit} = useForm();
   const [error, setError] = useState<Error | null>(null);
   const [users, setUsers] = useState<User[]>([]);
-  const { handleLogin, loading } = useAuth();
+  const {handleLogin, loading} = useAuth();
   const isAuth = getToken();
   const navigate = useNavigate();
 
@@ -40,7 +40,7 @@ export default function SignIn() {
       }
     } catch (error) {
       setError({
-        name: "Erro",
+        name: 'Erro',
         message: (error as Error)!.message,
       });
     }
@@ -62,14 +62,14 @@ export default function SignIn() {
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="email">Email</label>
         <input
-          {...register("email")}
+          {...register('email')}
           id="email"
           type="email"
           placeholder="E-mail"
         />
         <label htmlFor="password">Senha</label>
         <input
-          {...register("senha")}
+          {...register('senha')}
           id="password"
           type="password"
           placeholder="Senha"
@@ -78,7 +78,7 @@ export default function SignIn() {
       </FormContainer>
       <footer>
         <span>
-          Ainda não possui uma conta?{" "}
+          Ainda não possui uma conta?{' '}
           <NavLink to="/signup">Registre-se</NavLink>
         </span>
       </footer>

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { getAllUsers } from "../../services/v1/user-service";
-import { Container, UsersList } from "./styles";
+import {useEffect, useState} from 'react';
+import {getAllUsers} from '@/services/v1/user-service';
+import {Container, UsersList} from './styles';
 
 interface User {
   nivel: string;
@@ -19,8 +19,8 @@ export default function Users() {
   const [users, setUsers] = useState<User[]>([]);
 
   const VARIANTS_ROLES: VariantRole = {
-    operator: "Lojista",
-    admin: "Admin",
+    operator: 'Lojista',
+    admin: 'Admin',
   };
 
   async function getUsers() {

@@ -1,16 +1,16 @@
-import { useForm, Controller } from "react-hook-form";
-import { NavLink } from "react-router-dom";
-import * as zod from "zod";
-import genericLogo from "../../assets/logo-generic.svg";
-import { Select } from "../../components/Select";
-import { createUser } from "../../services/v1/user-service";
-import { optionsBackgroundColor } from "../../utils/mocks/optionsBackgroundColor";
-import { optionsLevel } from "../../utils/mocks/optionsLevel";
-import { FormContainer, SignContainer } from "./styles";
+import {useForm, Controller} from 'react-hook-form';
+import {NavLink} from 'react-router-dom';
+import * as zod from 'zod';
+import {Select} from '@/components/Select';
+import {createUser} from '@/services/v1/user-service';
+import {optionsBackgroundColor} from '@/utils/mocks/optionsBackgroundColor';
+import {optionsLevel} from '@/utils/mocks/optionsLevel';
+import genericLogo from '@/assets/logo-generic.svg';
+import {FormContainer, SignContainer} from './styles';
 
 const defaultOption = {
-  value: "",
-  label: "Selecione a opção",
+  value: '',
+  label: 'Selecione a opção',
 };
 
 const newUserFormValidationSchema = zod.object({
@@ -31,18 +31,18 @@ const newUserFormValidationSchema = zod.object({
 export type NewUserFormData = zod.infer<typeof newUserFormValidationSchema>;
 
 export default function SignUp() {
-  const { register, handleSubmit, control, reset } = useForm<NewUserFormData>({
+  const {register, handleSubmit, control, reset} = useForm<NewUserFormData>({
     defaultValues: {
-      nome: "",
-      telefone: "",
-      email: "",
-      senha: "",
+      nome: '',
+      telefone: '',
+      email: '',
+      senha: '',
       corDeFundo: defaultOption,
       nivel: defaultOption,
     },
   });
 
-  async function onSubmit({ nivel, corDeFundo, ...rest }: NewUserFormData) {
+  async function onSubmit({nivel, corDeFundo, ...rest}: NewUserFormData) {
     try {
       await createUser({
         ...rest,
@@ -50,9 +50,9 @@ export default function SignUp() {
         corDeFundo: corDeFundo.value,
       });
     } catch {
-      console.log("deu erro");
+      console.log('deu erro');
     } finally {
-      console.log("terminou");
+      console.log('terminou');
       reset();
     }
   }
@@ -66,31 +66,31 @@ export default function SignUp() {
       </header>
       <FormContainer onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="name">Nome</label>
-        <input {...register("nome")} id="name" placeholder="Nome" />
+        <input {...register('nome')} id="name" placeholder="Nome" />
         <label htmlFor="email">Email</label>
         <input
-          {...register("email")}
+          {...register('email')}
           id="email"
           type="email"
           placeholder="E-mail"
         />
         <label htmlFor="telephone">Telefone</label>
         <input
-          {...register("telefone")}
+          {...register('telefone')}
           id="telephone"
           placeholder="Telefone"
         />
         <Controller
           name="nivel"
           control={control}
-          render={({ field }) => (
+          render={({field}) => (
             <Select {...field} options={optionsLevel} labelText="Nível" />
           )}
         />
         <Controller
           name="corDeFundo"
           control={control}
-          render={({ field }) => (
+          render={({field}) => (
             <Select
               {...field}
               options={optionsBackgroundColor}
@@ -100,7 +100,7 @@ export default function SignUp() {
         />
         <label htmlFor="password">Senha</label>
         <input
-          {...register("senha")}
+          {...register('senha')}
           id="password"
           type="password"
           placeholder="Senha"
