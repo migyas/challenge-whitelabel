@@ -10,6 +10,7 @@ import Input from '@/components/Input';
 import {zodResolver} from '@hookform/resolvers/zod';
 import animatePresence from '@/components/AnimatePresence';
 import {NewUserFormData} from '../SignUp';
+import {Button} from '@/components/Button';
 
 const SignInFormValidationSchema = zod.object({
   email: zod.string().min(1, 'Campo obrigatório'),
@@ -87,7 +88,11 @@ function SignIn() {
           helperText={errors.senha?.message?.toString()}
           error={!!errors.senha}
         />
-        <button type="submit">Entrar</button>
+        <Button
+          text="Registrar"
+          type="submit"
+          onClick={handleSubmit(onSubmit)}
+        />
       </FormContainer>
       <footer>
         <span>

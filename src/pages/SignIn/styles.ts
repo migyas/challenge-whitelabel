@@ -66,31 +66,4 @@ export const FormContainer = styled.form`
   flex-direction: column;
   margin-top: 2rem;
   gap: 0.6rem;
-
-  label {
-    font-size: 0.875rem;
-    color: ${(props) => props.theme['gray-800']};
-  }
-
-  input {
-    border: 1px solid ${(props) => props.theme['gray-100']};
-    border-radius: 5px;
-    height: 41px;
-    padding: 0.75rem;
-  }
-
-  button[type='submit'] {
-    height: 45px;
-    border-radius: 5px;
-    border: 0;
-    cursor: pointer;
-    font-size: 1.063rem;
-    background: ${(props) => props.theme['blue-500']};
-    color: ${(props) => props.theme['white']};
-    margin-top: 3rem;
-    gap: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 `;

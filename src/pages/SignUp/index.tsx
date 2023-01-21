@@ -10,6 +10,7 @@ import {FormContainer, SignContainer} from './styles';
 import Input from '@/components/Input';
 import {zodResolver} from '@hookform/resolvers/zod';
 import animatePresence from '@/components/AnimatePresence';
+import {Button} from '@/components/Button';
 
 const newUserFormValidationSchema = zod
   .object({
@@ -125,9 +126,11 @@ function SignUp() {
             />
           )}
         />
-        <button type="submit" onClick={handleSubmit(onSubmit)}>
-          Registrar
-        </button>
+        <Button
+          text="Registrar"
+          type="submit"
+          onClick={handleSubmit(onSubmit)}
+        />
       </FormContainer>
       <footer>
         <span>

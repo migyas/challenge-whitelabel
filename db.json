@@ -6,17 +6,18 @@
       "email": "admin@greenbelt.com",
       "senha": "12345678",
       "nivel": "operator",
-      "corDeFundo": "blue",
+      "corDeFundo": "gray",
       "id": 2
+    },
+    {
+      "nome": "dasda",
+      "telefone": "(11) 1 1111-1111",
+      "email": "admin@greenbelt.com",
+      "senha": "12345678",
+      "nivel": "admin",
+      "corDeFundo": "blue",
+      "id": 3
     }
   ],
-  "login": {
-    "nome": "Yan Dias",
-    "telefone": "1212121",
-    "email": "admin@greenbelt.com",
-    "senha": "12345678",
-    "nivel": "operator",
-    "corDeFundo": "blue",
-    "id": 2
-  }
+  "login": {}
 }
