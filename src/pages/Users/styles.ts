@@ -98,12 +98,28 @@ export const UsersList = styled.div`
         padding-left: 1.5rem;
       }
 
-      &:last-child {
-        padding-right: 1.5rem;
-
+      &:nth-last-child(2) {
         div {
           display: flex;
           gap: 0.5rem;
+        }
+      }
+
+      &:last-child {
+        button {
+          display: flex;
+          cursor: pointer;
+          border: 1px solid ${(props) => props.theme['white']};
+          background: transparent;
+          padding: 0.25rem;
+          border-radius: 5px;
+          font-size: 0.875rem;
+          color: ${(props) => props.theme['white']};
+
+          &:hover {
+            border: 1px solid ${(props) => props.theme['green-300']};
+            color: ${(props) => props.theme['green-300']};
+          }
         }
       }
     }

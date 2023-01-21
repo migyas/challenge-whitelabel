@@ -53,13 +53,13 @@ export const Container = styled.div<ModalContainerProps>`
       padding: 1rem;
 
       .header__icon {
-        width: 116px;
-        height: 116px;
+        width: 80px;
+        height: 80px;
         background-color: #fff;
         border-radius: 50%;
         position: absolute;
         left: 50%;
-        top: calc(-58px - 4px);
+        top: calc(-42px - 4px);
         transform: translateX(-50%);
         overflow: hidden;
         display: flex;
@@ -67,7 +67,7 @@ export const Container = styled.div<ModalContainerProps>`
         justify-content: center;
 
         svg {
-          font-size: 2rem;
+          font-size: 2.5rem;
           color: ${(props) => props.theme['green-300']};
         }
 
@@ -90,6 +90,11 @@ export const Container = styled.div<ModalContainerProps>`
         transition: all 0.3s;
         cursor: pointer;
         background-color: transparent;
+        border: 0;
+
+        &:hover {
+          color: ${(props) => props.theme['red-500']};
+        }
       }
     }
 

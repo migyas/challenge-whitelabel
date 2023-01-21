@@ -1,9 +1,11 @@
 import {useEffect, useState} from 'react';
+import {Pencil} from 'phosphor-react';
+import Modal from '@/components/Modal/Modal';
+import {ModalBody, ModalFooterBlank} from '@/components/Modal';
+import useDisclosure from '@/hooks/useDisclosure';
 import {getAllUsers} from '@/services/v1/user-service';
 import {BackgroundColorDot, ButtonAdd, Container, UsersList} from './styles';
-import Modal from '@/components/Modal/Modal';
-import useDisclosure from '@/hooks/useDisclosure';
-import {ModalBody, ModalFooterBlank} from '@/components/Modal';
+import {ModalAdd} from './ModalAdd';
 
 interface User {
   nivel: string;
@@ -58,6 +60,7 @@ export default function Users() {
               <th>E-mail</th>
               <th>Nível</th>
               <th>Cor de Fundo</th>
+              <th>Editar</th>
             </tr>
           </thead>
           <tbody>
@@ -74,20 +77,18 @@ export default function Users() {
                       {VARIANTS_BACKGROUNDS_COLOURS[user.corDeFundo]}
                     </div>
                   </td>
+                  <td>
+                    <button title="Editar">
+                      <Pencil size={20} />
+                    </button>
+                  </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
       </UsersList>
-      <Modal isOpen={isOpen} toggle={toggle} size="lg">
-        <ModalBody>
-          <form>
-            <input type="text" />
-          </form>
-        </ModalBody>
-        <ModalFooterBlank />
-      </Modal>
+      <ModalAdd isOpen={isOpen} toggle={toggle} getUsers={getUsers} />
     </Container>
   );
 }

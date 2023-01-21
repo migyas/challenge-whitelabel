@@ -10,6 +10,7 @@
     "server": "json-server --watch db.json --port 3004"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.10",
     "axios": "^1.2.3",
     "framer-motion": "^8.5.0",
     "json-server": "^0.17.1",
@@ -21,6 +22,7 @@
     "react-hook-form": "^7.42.1",
     "react-router-dom": "^6.7.0",
     "styled-components": "^5.3.6",
+    "vanilla-masker": "^1.2.0",
     "vite-tsconfig-paths": "^4.0.5",
     "zod": "^3.20.2"
   },
@@ -28,6 +30,7 @@
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
     "@types/styled-components": "^5.1.26",
+    "@types/vanilla-masker": "^1.2.1",
     "@vitejs/plugin-react": "^3.0.0",
     "eslint": "^8.32.0",
     "eslint-config-prettier": "^8.6.0",

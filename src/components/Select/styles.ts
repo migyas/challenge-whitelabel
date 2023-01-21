@@ -14,6 +14,7 @@ export const Container = styled.div`
 
     .label-wrapper__label {
       font-size: 0.875rem;
+      color: ${(props) => props.theme['gray-800']};
     }
   }
 
@@ -138,7 +139,7 @@ export const Container = styled.div`
 
   &.--error {
     .select__helper-text {
-      color: ${(props) => props.theme['gray-700']};
+      color: ${(props) => props.theme['red-500']};
     }
 
     .input-wrapper__input {
