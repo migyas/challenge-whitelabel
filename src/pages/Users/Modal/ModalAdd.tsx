@@ -60,7 +60,7 @@ export function ModalAdd({isOpen, toggle, getUsers, setUsers}: ModalAddProps) {
       });
       throw new Error('Servidor fora do ar');
     } finally {
-      getUsers();
+      // getUsers();
       toggle();
     }
   }
