@@ -5,6 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  height: 100%;
   gap: 2rem;
 
   @media (max-width: 450px) {
@@ -53,7 +54,7 @@ export const BackgroundColorDot = styled.span<StatusProps>`
 export const UsersList = styled.div`
   display: block;
   white-space: nowrap;
-  overflow: auto hidden;
+  overflow: auto;
   max-width: 100%;
   width: 100%;
 

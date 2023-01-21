@@ -10,6 +10,7 @@ import {optionsLevel} from '@/utils/mocks/optionsLevel';
 import {createUser} from '@/services/v1/user-service';
 import {Button} from '@/components/Button';
 import {ModalContent, ModalForm} from './styles';
+import useCustomToast from '@/hooks/useCustomToast';
 
 interface ModalAddProps {
   isOpen: boolean;
@@ -35,6 +36,7 @@ const newUserFormValidationSchema = zod.object({
 export type NewUserFormData = zod.infer<typeof newUserFormValidationSchema>;
 
 export function ModalAdd({isOpen, toggle, getUsers}: ModalAddProps) {
+  const toast = useCustomToast();
   const {
     register,
     handleSubmit,
@@ -54,6 +56,12 @@ export function ModalAdd({isOpen, toggle, getUsers}: ModalAddProps) {
         ...rest,
         nivel: nivel.value,
         corDeFundo: corDeFundo.value,
+      });
+      toast({
+        data: {
+          color: 'success',
+          message: 'O <strong>usuário</strong> foi criado com sucesso!',
+        },
       });
       reset();
     } catch {
