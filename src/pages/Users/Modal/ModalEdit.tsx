@@ -19,7 +19,7 @@ interface ModalEditProps {
   user: UserData;
 }
 
-type UserData = {
+export type UserData = {
   id: number;
   nivel: string;
   nome: string;

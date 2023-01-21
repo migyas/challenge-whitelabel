@@ -98,14 +98,16 @@ export const UsersList = styled.div`
         padding-left: 1.5rem;
       }
 
-      &:nth-last-child(2) {
+      &:nth-last-child(2),
+      &:nth-last-child(3) {
         div {
           display: flex;
           gap: 0.5rem;
         }
       }
 
-      &:last-child {
+      &:last-child,
+      &:nth-last-child(2) {
         button {
           display: flex;
           cursor: pointer;

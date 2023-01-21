@@ -1,11 +1,12 @@
 import {Fragment, useEffect, useState} from 'react';
-import {Pencil} from 'phosphor-react';
+import {Pencil, Trash} from 'phosphor-react';
 import useDisclosure from '@/hooks/useDisclosure';
 import {getAllUsers} from '@/services/v1/user-service';
 import {BackgroundColorDot, ButtonAdd, Container, UsersList} from './styles';
 import {ModalAdd} from './Modal/ModalAdd';
 import animatePresence from '@/components/AnimatePresence';
 import {ModalEdit} from './Modal/ModalEdit';
+import {ModalDelete} from './Modal/ModalDelete';
 
 interface User {
   id: number;
@@ -26,6 +27,8 @@ function Users() {
   const [user, setUser] = useState<User>({} as User);
   const {isOpen: isOpenModalAdd, toggle: toggleModalAdd} = useDisclosure();
   const {isOpen: isOpenModalEdit, toggle: toggleModalEdit} = useDisclosure();
+  const {isOpen: isOpenModalDelete, toggle: toggleModalDelete} =
+    useDisclosure();
 
   const VARIANTS_ROLES: VariantsType = {
     operator: 'Lojista',
@@ -64,6 +67,7 @@ function Users() {
               <th>Nível</th>
               <th>Cor de Fundo</th>
               <th>Editar</th>
+              <th>Excluir</th>
             </tr>
           </thead>
           <tbody>
@@ -92,6 +96,17 @@ function Users() {
                         <Pencil size={20} />
                       </button>
                     </td>
+                    <td>
+                      <button
+                        title="Deletar"
+                        onClick={() => {
+                          toggleModalDelete();
+                          setUser(user);
+                        }}
+                      >
+                        <Trash size={20} />
+                      </button>
+                    </td>
                   </tr>
                 </Fragment>
               );
@@ -107,6 +122,12 @@ function Users() {
       <ModalEdit
         isOpen={isOpenModalEdit}
         toggle={toggleModalEdit}
+        getUsers={getUsers}
+        user={user}
+      />
+      <ModalDelete
+        isOpen={isOpenModalDelete}
+        toggle={toggleModalDelete}
         getUsers={getUsers}
         user={user}
       />

@@ -7,6 +7,10 @@ export const ModalContent = styled.div`
     strong {
       color: #222;
     }
+
+    span {
+      color: ${(props) => props.theme['gray-600']};
+    }
   }
 `;
 

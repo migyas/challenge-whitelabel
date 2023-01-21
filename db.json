@@ -1,15 +1,6 @@
 {
   "users": [
     {
-      "nome": "Yan Dias",
-      "telefone": "(12) 1 2121-2121",
-      "email": "admin2@greenbelt.com",
-      "senha": "12345678",
-      "nivel": "operator",
-      "corDeFundo": "gray",
-      "id": 2
-    },
-    {
       "nome": "Testando de novo",
       "telefone": "(61) 9 9998-9898",
       "email": "admin@greenbelt.com",
