@@ -9,6 +9,7 @@ import {ModalAdd} from './ModalAdd';
 import animatePresence from '@/components/AnimatePresence';
 
 interface User {
+  id: number;
   nivel: string;
   nome: string;
   telefone: string;
@@ -67,7 +68,7 @@ function Users() {
           <tbody>
             {users.map((user) => {
               return (
-                <tr key={user.email}>
+                <tr key={user.id}>
                   <td>{user.nome}</td>
                   <td>{user.telefone}</td>
                   <td>{user.email}</td>

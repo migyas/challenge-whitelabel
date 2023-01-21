@@ -9,11 +9,7 @@ import {FormContainer, SignContainer} from './styles';
 import Input from '@/components/Input';
 import {zodResolver} from '@hookform/resolvers/zod';
 import animatePresence from '@/components/AnimatePresence';
-
-type User = {
-  nome: string;
-  email: string;
-};
+import {NewUserFormData} from '../SignUp';
 
 const SignInFormValidationSchema = zod.object({
   email: zod.string().min(1, 'Campo obrigatório'),
@@ -33,12 +29,16 @@ function SignIn() {
     resolver: zodResolver(SignInFormValidationSchema),
   });
   const [error, setError] = useState<Error | null>(null);
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<NewUserFormData[]>([]);
   const {handleLogin, loading} = useAuth();
 
   async function getUsers() {
-    const data = await getAllUsers();
-    setUsers(data);
+    try {
+      const data = await getAllUsers();
+      setUsers(data);
+    } catch {
+      console.log('Erro na API');
+    }
   }
 
   useEffect(() => {
@@ -49,6 +49,7 @@ function SignIn() {
 
   async function onSubmit(data: SignInFormData) {
     const findUser = users.find((user) => user.email === data.email);
+
     if (findUser) {
       handleLogin(findUser, true);
     } else {

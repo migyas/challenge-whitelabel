@@ -1,20 +1,37 @@
 import {NavLink} from 'react-router-dom';
 import styled from 'styled-components';
 
-export const SidebarNavItem = styled(NavLink)`
+const COLORS_TEXTS = {
+  gray: 'gray-100',
+  blue: 'gray-100',
+} as const;
+
+const COLORS_TEXTS__ACTIVE = {
+  gray: 'white',
+  blue: 'white',
+} as const;
+
+const BACKGROUND_COLORS__ACTIVE = {
+  gray: 'gray-800',
+  blue: 'blue-500',
+} as const;
+
+export const SidebarNavItem = styled(NavLink)<BackgroundColorProps>`
   display: flex;
   align-items: center;
   padding: 1rem;
   text-decoration: none;
-  color: ${(props) => props.theme['bg-sidebar-default']};
+  color: ${(props) => props.theme[COLORS_TEXTS[props.backgroundColor]]};
   transition: all 0.2s;
   gap: 0.5rem;
 
   &.active {
-    background: ${(props) => props.theme['gray-700']};
+    background: ${(props) =>
+      props.theme[BACKGROUND_COLORS__ACTIVE[props.backgroundColor]]};
     border-left: 4px solid ${(props) => props.theme['yellow-500']};
     padding: 1rem 1.75rem;
-    color: ${(props) => props.theme['gray-100']};
+    color: ${(props) =>
+      props.theme[COLORS_TEXTS__ACTIVE[props.backgroundColor]]};
   }
 `;
 
@@ -37,8 +54,18 @@ export const SidebarOverlay = styled.div`
   }
 `;
 
-export const SidebarContent = styled.div`
-  background: #363740;
+const BACKGROUND_COLORS = {
+  gray: 'bg-sidebar-default',
+  blue: 'blue-700',
+} as const;
+
+interface BackgroundColorProps {
+  backgroundColor: keyof typeof BACKGROUND_COLORS;
+}
+
+export const SidebarContent = styled.div<BackgroundColorProps>`
+  background: ${(props) =>
+    props.theme[BACKGROUND_COLORS[props.backgroundColor]]};
   width: 16rem;
   height: 100vh;
   display: flex;

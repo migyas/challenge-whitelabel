@@ -5,10 +5,8 @@ import {
   GearSix,
   CaretDoubleRight,
 } from 'phosphor-react';
-
 import {classNames} from '@/utils/classNames';
 import whiteLabelLogo from '@/assets/logo.svg';
-
 import {
   ButtonContainer,
   SidebarContainer,
@@ -17,9 +15,13 @@ import {
   SidebarOverlay,
 } from './styles';
 import useDisclosure from '@/hooks/useDisclosure';
+import useAuth from '@/hooks/useAuth';
 
 export function Sidebar() {
   const {isOpen, toggle} = useDisclosure();
+  const {user} = useAuth();
+
+  console.log(user);
 
   return (
     <SidebarContainer>
@@ -29,6 +31,7 @@ export function Sidebar() {
         })}
       />
       <SidebarContent
+        backgroundColor={user.corDeFundo}
         className={classNames('', {
           '--expand': isOpen,
         })}
@@ -38,21 +41,21 @@ export function Sidebar() {
           <strong>Nome Empresa</strong>
         </header>
         <nav>
-          <SidebarNavItem to="/">
+          <SidebarNavItem backgroundColor={user.corDeFundo} to="/">
             <ChartPieSlice size={18} />
             <strong>Geral</strong>
           </SidebarNavItem>
-          <SidebarNavItem to="/users">
+          <SidebarNavItem backgroundColor={user.corDeFundo} to="/users">
             <Users size={18} />
             <strong>Usuários</strong>
           </SidebarNavItem>
-          <SidebarNavItem to="/my-store">
+          <SidebarNavItem backgroundColor={user.corDeFundo} to="/my-store">
             <Storefront size={18} />
             <strong>Minha loja</strong>
           </SidebarNavItem>
         </nav>
         <footer>
-          <SidebarNavItem to="/settings">
+          <SidebarNavItem backgroundColor={user.corDeFundo} to="/settings">
             <GearSix size={18} />
             <strong>Configurações</strong>
           </SidebarNavItem>

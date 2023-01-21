@@ -1,9 +1,11 @@
-import {createContext, useState} from 'react';
+import {createContext, useEffect, useState} from 'react';
 import {removeToken, setToken} from '@/utils/authUtils';
-import {NewUserFormData as LoginPayload} from '@/pages/SignUp';
+import {NewUserFormData as LoginPayload, NewUserFormData} from '@/pages/SignUp';
 import {redirect} from 'react-router-dom';
+import {api} from '@/services/api';
 
 type User = {
+  id: number;
   nome: string;
   email: string;
 };
@@ -11,8 +13,8 @@ type User = {
 export interface UseAuthProps {
   isAuth: boolean;
   loading: boolean;
-  user: User | Record<string, any>;
-  handleLogin(userData: User, keepAuth?: boolean): Promise<void>;
+  user: NewUserFormData | Record<string, any>;
+  handleLogin(userData: NewUserFormData, keepAuth?: boolean): Promise<void>;
   handleLogout(): Promise<void>;
 }
 
@@ -31,27 +33,44 @@ export const AuthContext = createContext<UseAuthProps>({
 export const AuthProvider = ({children}: {children?: React.ReactNode}) => {
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState<User | Record<string, any>>({});
+  const [user, setUser] = useState<NewUserFormData | Record<string, any>>({});
 
-  const handleLogin = async (userData: LoginPayload, keepAuth?: boolean) => {
-    setLoading(true);
+  useEffect(() => {
+    (async () => {
+      const {data} = await api.get('login');
+      setUser(data);
+    })();
+  }, []);
+
+  async function handleLogin(userData: LoginPayload, keepAuth?: boolean) {
     try {
+      await api.post('login', userData);
       setIsAuth(true);
-      setUser(userData);
       setToken(JSON.stringify(userData.email), keepAuth);
       redirect('/');
       setLoading(false);
       window.location.reload();
-    } catch (err) {
-      setLoading(false);
-      throw new Error('Usuário não encontrado');
+    } catch {
+      throw new Error('Erro na API');
     }
-  };
+  }
+
+  // const handleLogin = async (userData: LoginPayload, keepAuth?: boolean) => {
+  //   setLoading(true);
+
+  //   try {
+
+  //   } catch (err) {
+  //     setLoading(false);
+  //     throw new Error('Usuário não encontrado');
+  //   }
+  // };
 
   const handleLogout = async () => {
     setLoading(true);
 
     try {
+      await api.put(`login`);
       setIsAuth(false);
       setUser({});
       removeToken();
