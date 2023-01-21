@@ -16,7 +16,6 @@ export default defineConfig({
       lazy: ['React', 'lazy'],
     }),
   ],
-  envPrefix: 'REACT_',
   server: {
     port: 3000,
   },

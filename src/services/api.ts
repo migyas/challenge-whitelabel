@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: import.meta.env.REACT_API_URL,
+  baseURL: 'https://my-json-server.typicode.com/migyas/challenge-whitelabel',
 });
