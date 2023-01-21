@@ -32,7 +32,7 @@ export const AuthContext = createContext<UseAuthProps>({
 
 export const AuthProvider = ({children}: {children?: React.ReactNode}) => {
   const [isAuth, setIsAuth] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState<NewUserFormData | Record<string, any>>({});
 
   useEffect(() => {
@@ -44,14 +44,16 @@ export const AuthProvider = ({children}: {children?: React.ReactNode}) => {
 
   async function handleLogin(userData: LoginPayload, keepAuth?: boolean) {
     try {
+      setLoading(true);
       await api.post('login', userData);
       setIsAuth(true);
       setToken(JSON.stringify(userData.email), keepAuth);
       redirect('/');
-      setLoading(false);
       window.location.reload();
     } catch {
       throw new Error('Erro na API');
+    } finally {
+      setLoading(false);
     }
   }
 

@@ -88,5 +88,9 @@ export const FormContainer = styled.form`
     background: ${(props) => props.theme['blue-500']};
     color: ${(props) => props.theme['white']};
     margin-top: 3rem;
+    gap: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;

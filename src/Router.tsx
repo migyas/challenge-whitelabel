@@ -1,6 +1,6 @@
-import {lazy} from 'react';
+import {lazy, Suspense} from 'react';
 import {Routes, Route, Navigate} from 'react-router-dom';
-import {SuspenseLoader} from '@/components/SuspenseLoader';
+import SuspenseLoader from '@/components/SuspenseLoader';
 import {getToken} from '@/utils/authUtils';
 import {DefaultLayout} from '@/layouts/DefaultLayout';
 
@@ -52,9 +52,9 @@ export function Router() {
                   key={index}
                   index
                   element={
-                    <SuspenseLoader>
+                    <Suspense fallback={<SuspenseLoader />}>
                       <route.element />
-                    </SuspenseLoader>
+                    </Suspense>
                   }
                 />
               );
@@ -65,9 +65,9 @@ export function Router() {
                 key={route.path}
                 path={route.path}
                 element={
-                  <SuspenseLoader>
+                  <Suspense fallback={<SuspenseLoader />}>
                     <route.element />
-                  </SuspenseLoader>
+                  </Suspense>
                 }
               />
             );
@@ -84,9 +84,9 @@ export function Router() {
             isAuth ? (
               <Navigate to="/" />
             ) : (
-              <SuspenseLoader>
+              <Suspense fallback={<SuspenseLoader />}>
                 <route.element />
-              </SuspenseLoader>
+              </Suspense>
             )
           }
         />

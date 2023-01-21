@@ -3,7 +3,7 @@ import {ThemeProvider} from 'styled-components';
 import {GlobalStyle} from '@/global';
 import {Router} from '@/Router';
 import {defaultTheme} from './styles/themes/default';
-import {SuspenseLoader} from '@/components/SuspenseLoader';
+import SuspenseLoader from '@/components/SuspenseLoader';
 import {BrowserRouter} from 'react-router-dom';
 import {AuthProvider} from '@/context/Auth';
 
