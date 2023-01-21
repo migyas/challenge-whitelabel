@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {NavLink} from 'react-router-dom';
 import genericLogo from '@/assets/logo-generic.svg';
@@ -35,17 +35,15 @@ function SignIn() {
     }
   }
 
-  useEffect(() => {
-    (async () => {
-      getUsers();
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     getUsers();
+  //   })();
+  // }, []);
 
   async function onSubmit(data: SignInFormData) {
-    const findUser = users.find((user) => user.email === data.email);
-
-    if (findUser) {
-      handleLogin(findUser, true);
+    if (data.email === 'admin@whitelabel.com' && data.senha === '12345678') {
+      handleLogin(data, true);
     } else {
       setError({
         name: 'Erro',

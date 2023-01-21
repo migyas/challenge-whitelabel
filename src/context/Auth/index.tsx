@@ -4,11 +4,16 @@ import {redirect} from 'react-router-dom';
 import {api} from '@/services/api';
 import {NewUserFormData} from '@/pages/Users/UserSchema';
 
+type SignInProps = {
+  email: string;
+  senha: string;
+};
+
 export interface UseAuthProps {
   isAuth: boolean;
   loading: boolean;
   user: NewUserFormData | Record<string, any>;
-  handleLogin(userData: NewUserFormData, keepAuth?: boolean): Promise<void>;
+  handleLogin(userData: SignInProps, keepAuth?: boolean): Promise<void>;
   handleLogout(): Promise<void>;
 }
 
@@ -39,7 +44,6 @@ export const AuthProvider = ({children}: {children?: React.ReactNode}) => {
   async function handleLogin(userData: NewUserFormData, keepAuth?: boolean) {
     try {
       setLoading(true);
-      await api.post('login', userData);
       setIsAuth(true);
       setToken(JSON.stringify(userData.email), keepAuth);
       redirect('/');
