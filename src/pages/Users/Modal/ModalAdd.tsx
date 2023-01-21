@@ -11,29 +11,13 @@ import {createUser} from '@/services/v1/user-service';
 import {Button} from '@/components/Button';
 import {ModalContent, ModalForm} from './styles';
 import useCustomToast from '@/hooks/useCustomToast';
+import {NewUserFormData, newUserFormValidationSchema} from '../UserSchema';
 
 interface ModalAddProps {
   isOpen: boolean;
   toggle: () => void;
   getUsers: () => Promise<void>;
 }
-
-const newUserFormValidationSchema = zod.object({
-  nivel: zod.object({
-    value: zod.string(),
-    label: zod.string(),
-  }),
-  nome: zod.string().min(1, 'Campo obrigatório'),
-  telefone: zod.string().min(9, 'Campo obrigatório'),
-  corDeFundo: zod.object({
-    value: zod.string(),
-    label: zod.string(),
-  }),
-  email: zod.string().min(1, 'Campo obrigatório'),
-  senha: zod.string().min(8, 'Mínimo de 8 caracteres'),
-});
-
-export type NewUserFormData = zod.infer<typeof newUserFormValidationSchema>;
 
 export function ModalAdd({isOpen, toggle, getUsers}: ModalAddProps) {
   const toast = useCustomToast();
@@ -65,7 +49,13 @@ export function ModalAdd({isOpen, toggle, getUsers}: ModalAddProps) {
       });
       reset();
     } catch {
-      console.log('deu erro');
+      toast({
+        data: {
+          color: 'error',
+          message: 'Servidor fora do ar!',
+        },
+      });
+      throw new Error('Servidor fora do ar');
     } finally {
       getUsers();
       toggle();

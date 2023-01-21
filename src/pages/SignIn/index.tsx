@@ -1,23 +1,16 @@
 import {useState, useEffect} from 'react';
 import {useForm} from 'react-hook-form';
 import {NavLink} from 'react-router-dom';
-import * as zod from 'zod';
 import genericLogo from '@/assets/logo-generic.svg';
 import useAuth from '@/hooks/useAuth';
 import {getAllUsers} from '@/services/v1/user-service';
-import {FormContainer, SignContainer} from './styles';
 import Input from '@/components/Input';
 import {zodResolver} from '@hookform/resolvers/zod';
 import animatePresence from '@/components/AnimatePresence';
-import {NewUserFormData} from '../SignUp';
 import {Button} from '@/components/Button';
-
-const SignInFormValidationSchema = zod.object({
-  email: zod.string().min(1, 'Campo obrigatório'),
-  senha: zod.string().min(8, 'Mínimo de 8 caracteres'),
-});
-
-export type SignInFormData = zod.infer<typeof SignInFormValidationSchema>;
+import {NewUserFormData} from '@/pages/Users/UserSchema';
+import {SignInFormData, SignInFormValidationSchema} from './SignInSchema';
+import {FormContainer, SignContainer} from './styles';
 
 function SignIn() {
   const {

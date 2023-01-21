@@ -1,6 +1,5 @@
-import {PencilCircle, PlusCircle} from 'phosphor-react';
+import {PencilCircle} from 'phosphor-react';
 import {Controller, useForm} from 'react-hook-form';
-import * as zod from 'zod';
 import {zodResolver} from '@hookform/resolvers/zod';
 import Input from '@/components/Input';
 import {Modal, ModalBody, ModalFooter} from '@/components/Modal';
@@ -11,6 +10,9 @@ import {getUser, updateUser} from '@/services/v1/user-service';
 import {Button} from '@/components/Button';
 import {ModalContent, ModalForm} from './styles';
 import {useEffect} from 'react';
+import useCustomToast from '@/hooks/useCustomToast';
+import {NewUserFormData, newUserFormValidationSchema} from '../UserSchema';
+import {UserData} from '..';
 
 interface ModalEditProps {
   isOpen: boolean;
@@ -19,34 +21,8 @@ interface ModalEditProps {
   user: UserData;
 }
 
-export type UserData = {
-  id: number;
-  nivel: string;
-  nome: string;
-  telefone: string;
-  corDeFundo: string;
-  email: string;
-  senha: string;
-};
-
-const newUserFormValidationSchema = zod.object({
-  nivel: zod.object({
-    value: zod.string(),
-    label: zod.string(),
-  }),
-  nome: zod.string().min(1, 'Campo obrigatório'),
-  telefone: zod.string().min(9, 'Campo obrigatório'),
-  corDeFundo: zod.object({
-    value: zod.string(),
-    label: zod.string(),
-  }),
-  email: zod.string().min(1, 'Campo obrigatório'),
-  senha: zod.string().min(8, 'Mínimo de 8 caracteres'),
-});
-
-export type NewUserFormData = zod.infer<typeof newUserFormValidationSchema>;
-
 export function ModalEdit({isOpen, toggle, getUsers, user}: ModalEditProps) {
+  const toast = useCustomToast();
   const {
     register,
     handleSubmit,
@@ -94,9 +70,20 @@ export function ModalEdit({isOpen, toggle, getUsers, user}: ModalEditProps) {
         },
         user.id,
       );
+      toast({
+        data: {
+          color: 'success',
+          message: 'O <strong>usuário</strong> foi alterado com sucesso!',
+        },
+      });
       reset();
     } catch {
-      console.log('deu erro');
+      toast({
+        data: {
+          color: 'error',
+          message: 'Servidor fora do ar',
+        },
+      });
     } finally {
       getUsers();
       toggle();

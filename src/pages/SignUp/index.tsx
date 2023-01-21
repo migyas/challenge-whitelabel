@@ -1,6 +1,6 @@
 import {useForm, Controller} from 'react-hook-form';
-import {NavLink} from 'react-router-dom';
-import * as zod from 'zod';
+import {NavLink, useNavigate} from 'react-router-dom';
+
 import {Select} from '@/components/Select';
 import {createUser} from '@/services/v1/user-service';
 import {optionsBackgroundColor} from '@/utils/mocks/optionsBackgroundColor';
@@ -11,24 +11,15 @@ import Input from '@/components/Input';
 import {zodResolver} from '@hookform/resolvers/zod';
 import animatePresence from '@/components/AnimatePresence';
 import {Button} from '@/components/Button';
-
-const newUserFormValidationSchema = zod.object({
-  nivel: zod.object({
-    value: zod.string(),
-    label: zod.string(),
-  }),
-  nome: zod.string().min(1, 'Campo obrigatório'),
-  telefone: zod.string().min(9, 'Campo obrigatório'),
-  corDeFundo: zod.object({
-    value: zod.string(),
-    label: zod.string(),
-  }),
-  email: zod.string().min(1, 'Campo obrigatório'),
-  senha: zod.string().min(8, 'Mínimo de 8 caracteres'),
-});
-export type NewUserFormData = zod.infer<typeof newUserFormValidationSchema>;
+import useCustomToast from '@/hooks/useCustomToast';
+import {
+  NewUserFormData,
+  newUserFormValidationSchema,
+} from '../Users/UserSchema';
 
 function SignUp() {
+  const navigate = useNavigate();
+  const toast = useCustomToast();
   const {
     register,
     handleSubmit,
@@ -49,10 +40,16 @@ function SignUp() {
         nivel: nivel.value,
         corDeFundo: corDeFundo.value,
       });
-    } catch {
-      throw new Error('Erro na API');
-    } finally {
+      navigate('/signin');
       reset();
+    } catch {
+      toast({
+        data: {
+          color: 'error',
+          message: 'Servidor fora do ar!',
+        },
+      });
+      throw new Error('Erro na API');
     }
   }
 

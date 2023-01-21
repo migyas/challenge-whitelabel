@@ -8,7 +8,7 @@ import animatePresence from '@/components/AnimatePresence';
 import {ModalEdit} from './Modal/ModalEdit';
 import {ModalDelete} from './Modal/ModalDelete';
 
-interface User {
+export interface UserData {
   id: number;
   nivel: string;
   nome: string;
@@ -23,8 +23,8 @@ interface VariantsType {
 }
 
 function Users() {
-  const [users, setUsers] = useState<User[]>([]);
-  const [user, setUser] = useState<User>({} as User);
+  const [users, setUsers] = useState<UserData[]>([]);
+  const [user, setUser] = useState<UserData>({} as UserData);
   const {isOpen: isOpenModalAdd, toggle: toggleModalAdd} = useDisclosure();
   const {isOpen: isOpenModalEdit, toggle: toggleModalEdit} = useDisclosure();
   const {isOpen: isOpenModalDelete, toggle: toggleModalDelete} =
