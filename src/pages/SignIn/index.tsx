@@ -10,7 +10,6 @@ import Input from '@/components/Input';
 import {zodResolver} from '@hookform/resolvers/zod';
 import animatePresence from '@/components/AnimatePresence';
 import {NewUserFormData} from '../SignUp';
-import Loader from '@/components/Loader';
 
 const SignInFormValidationSchema = zod.object({
   email: zod.string().min(1, 'Campo obrigatório'),
@@ -31,7 +30,7 @@ function SignIn() {
   });
   const [error, setError] = useState<Error | null>(null);
   const [users, setUsers] = useState<NewUserFormData[]>([]);
-  const {handleLogin, loading} = useAuth();
+  const {handleLogin} = useAuth();
 
   async function getUsers() {
     try {
@@ -88,9 +87,7 @@ function SignIn() {
           helperText={errors.senha?.message?.toString()}
           error={!!errors.senha}
         />
-        <button type="submit">
-          Entrar {loading && <Loader color="#fff" />}
-        </button>
+        <button type="submit">Entrar</button>
       </FormContainer>
       <footer>
         <span>

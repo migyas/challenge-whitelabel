@@ -52,9 +52,8 @@ function SignUp() {
         corDeFundo: corDeFundo.value,
       });
     } catch {
-      console.log('deu erro');
+      throw new Error('Erro na API');
     } finally {
-      console.log('terminou');
       reset();
     }
   }
