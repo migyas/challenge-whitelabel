@@ -8,7 +8,7 @@ import {optionsBackgroundColor} from '@/utils/mocks/optionsBackgroundColor';
 import {optionsLevel} from '@/utils/mocks/optionsLevel';
 import {getUser, updateUser} from '@/services/v1/user-service';
 import {Button} from '@/components/Button';
-import {ModalContent, ModalForm} from './styles';
+import {InputWrapper, ModalContent, ModalForm} from './styles';
 import {useEffect} from 'react';
 import useCustomToast from '@/hooks/useCustomToast';
 import {NewUserFormData, newUserFormValidationSchema} from '../UserSchema';
@@ -108,26 +108,21 @@ export function ModalEdit({isOpen, toggle, getUsers, user}: ModalEditProps) {
             <strong>Edição/Visualização do usuário</strong>
           </header>
           <ModalForm>
-            <div
-              style={{
-                gridTemplateColumns: '1fr 1fr 1fr',
-              }}
-            >
+            <InputWrapper>
               <Input
                 labelText="Nome"
                 {...register('nome')}
                 placeholder="Nome"
                 helperText={errors.nome?.message?.toString()}
                 error={!!errors.nome}
-                defaultValue={user.nome}
               />
               <Input
-                type="password"
-                labelText="Senha"
-                {...register('senha')}
-                placeholder="Senha"
-                helperText={errors.senha?.message?.toString()}
-                error={!!errors.senha}
+                type="email"
+                labelText="Email"
+                placeholder="Email"
+                {...register('email')}
+                helperText={errors.email?.message?.toString()}
+                error={!!errors.email}
               />
               <Input
                 labelText="Telefone"
@@ -138,19 +133,13 @@ export function ModalEdit({isOpen, toggle, getUsers, user}: ModalEditProps) {
                 helperText={errors.telefone?.message?.toString()}
                 error={!!errors.telefone}
               />
-            </div>
-            <div
-              style={{
-                gridTemplateColumns: '2fr 1fr',
-              }}
-            >
               <Input
-                type="email"
-                labelText="Email"
-                placeholder="Email"
-                {...register('email')}
-                helperText={errors.email?.message?.toString()}
-                error={!!errors.email}
+                type="password"
+                labelText="Senha"
+                {...register('senha')}
+                placeholder="Senha"
+                helperText={errors.senha?.message?.toString()}
+                error={!!errors.senha}
               />
               <Controller
                 name="nivel"
@@ -165,12 +154,6 @@ export function ModalEdit({isOpen, toggle, getUsers, user}: ModalEditProps) {
                   />
                 )}
               />
-            </div>
-            <div
-              style={{
-                gridTemplateColumns: '1fr 1fr 1fr',
-              }}
-            >
               <Controller
                 name="corDeFundo"
                 control={control}
@@ -186,7 +169,7 @@ export function ModalEdit({isOpen, toggle, getUsers, user}: ModalEditProps) {
                   />
                 )}
               />
-            </div>
+            </InputWrapper>
           </ModalForm>
         </ModalContent>
       </ModalBody>

@@ -21,8 +21,6 @@ export function Sidebar() {
   const {isOpen, toggle} = useDisclosure();
   const {user} = useAuth();
 
-  console.log(user);
-
   return (
     <SidebarContainer>
       <SidebarOverlay

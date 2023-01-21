@@ -71,46 +71,52 @@ function Users() {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => {
-              return (
-                <Fragment key={user.id}>
-                  <tr>
-                    <td>{user.nome}</td>
-                    <td>{user.telefone}</td>
-                    <td>{user.email}</td>
-                    <td>{VARIANTS_ROLES[user.nivel]}</td>
-                    <td>
-                      <div>
-                        <BackgroundColorDot color={user.corDeFundo} />
-                        {VARIANTS_BACKGROUNDS_COLOURS[user.corDeFundo]}
-                      </div>
-                    </td>
-                    <td>
-                      <button
-                        title="Editar"
-                        onClick={() => {
-                          toggleModalEdit();
-                          setUser(user);
-                        }}
-                      >
-                        <Pencil size={20} />
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        title="Deletar"
-                        onClick={() => {
-                          toggleModalDelete();
-                          setUser(user);
-                        }}
-                      >
-                        <Trash size={20} />
-                      </button>
-                    </td>
-                  </tr>
-                </Fragment>
-              );
-            })}
+            {users.length > 0 ? (
+              users.map((user) => {
+                return (
+                  <Fragment key={user.id}>
+                    <tr>
+                      <td>{user.nome}</td>
+                      <td>{user.telefone}</td>
+                      <td>{user.email}</td>
+                      <td>{VARIANTS_ROLES[user.nivel]}</td>
+                      <td>
+                        <div>
+                          <BackgroundColorDot color={user.corDeFundo} />
+                          {VARIANTS_BACKGROUNDS_COLOURS[user.corDeFundo]}
+                        </div>
+                      </td>
+                      <td>
+                        <button
+                          title="Editar"
+                          onClick={() => {
+                            toggleModalEdit();
+                            setUser(user);
+                          }}
+                        >
+                          <Pencil size={20} />
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          title="Deletar"
+                          onClick={() => {
+                            toggleModalDelete();
+                            setUser(user);
+                          }}
+                        >
+                          <Trash size={20} />
+                        </button>
+                      </td>
+                    </tr>
+                  </Fragment>
+                );
+              })
+            ) : (
+              <tr>
+                <td colSpan={100}>Nenhum usuário cadastrado</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </UsersList>

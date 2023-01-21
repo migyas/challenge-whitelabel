@@ -1,17 +1,16 @@
 import {useForm, Controller} from 'react-hook-form';
 import {NavLink, useNavigate} from 'react-router-dom';
-
+import {zodResolver} from '@hookform/resolvers/zod';
 import {Select} from '@/components/Select';
+import Input from '@/components/Input';
+import animatePresence from '@/components/AnimatePresence';
+import {Button} from '@/components/Button';
 import {createUser} from '@/services/v1/user-service';
 import {optionsBackgroundColor} from '@/utils/mocks/optionsBackgroundColor';
 import {optionsLevel} from '@/utils/mocks/optionsLevel';
-import genericLogo from '@/assets/logo-generic.svg';
 import {FormContainer, SignContainer} from './styles';
-import Input from '@/components/Input';
-import {zodResolver} from '@hookform/resolvers/zod';
-import animatePresence from '@/components/AnimatePresence';
-import {Button} from '@/components/Button';
 import useCustomToast from '@/hooks/useCustomToast';
+import genericLogo from '@/assets/logo-generic.svg';
 import {
   NewUserFormData,
   newUserFormValidationSchema,

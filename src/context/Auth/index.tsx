@@ -1,14 +1,8 @@
 import {createContext, useEffect, useState} from 'react';
 import {removeToken, setToken} from '@/utils/authUtils';
-import {NewUserFormData as LoginPayload, NewUserFormData} from '@/pages/SignUp';
 import {redirect} from 'react-router-dom';
 import {api} from '@/services/api';
-
-type User = {
-  id: number;
-  nome: string;
-  email: string;
-};
+import {NewUserFormData} from '@/pages/Users/UserSchema';
 
 export interface UseAuthProps {
   isAuth: boolean;
@@ -42,7 +36,7 @@ export const AuthProvider = ({children}: {children?: React.ReactNode}) => {
     })();
   }, []);
 
-  async function handleLogin(userData: LoginPayload, keepAuth?: boolean) {
+  async function handleLogin(userData: NewUserFormData, keepAuth?: boolean) {
     try {
       setLoading(true);
       await api.post('login', userData);
@@ -56,17 +50,6 @@ export const AuthProvider = ({children}: {children?: React.ReactNode}) => {
       setLoading(false);
     }
   }
-
-  // const handleLogin = async (userData: LoginPayload, keepAuth?: boolean) => {
-  //   setLoading(true);
-
-  //   try {
-
-  //   } catch (err) {
-  //     setLoading(false);
-  //     throw new Error('Usuário não encontrado');
-  //   }
-  // };
 
   const handleLogout = async () => {
     setLoading(true);

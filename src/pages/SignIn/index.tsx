@@ -31,7 +31,7 @@ function SignIn() {
       const data = await getAllUsers();
       setUsers(data);
     } catch {
-      console.log('Erro na API');
+      throw new Error('Servidor fora do ar');
     }
   }
 

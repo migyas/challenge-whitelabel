@@ -19,9 +19,18 @@ export const ModalForm = styled.form`
   flex-direction: column;
   gap: 1.5rem;
   margin-top: 2rem;
+`;
 
-  div {
-    display: flex;
-    gap: 1rem;
+export const InputWrapper = styled.div`
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  @media (max-width: 765px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 545px) {
+    grid-template-columns: 1fr;
   }
 `;
