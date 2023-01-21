@@ -1,11 +1,9 @@
 import {useEffect, useState} from 'react';
 import {Pencil} from 'phosphor-react';
-import Modal from '@/components/Modal/Modal';
-import {ModalBody, ModalFooterBlank} from '@/components/Modal';
 import useDisclosure from '@/hooks/useDisclosure';
 import {getAllUsers} from '@/services/v1/user-service';
 import {BackgroundColorDot, ButtonAdd, Container, UsersList} from './styles';
-import {ModalAdd} from './ModalAdd';
+import {ModalAdd} from './Modal/ModalAdd';
 import animatePresence from '@/components/AnimatePresence';
 
 interface User {

@@ -18,6 +18,7 @@ export const ButtonContainer = styled.button<VariantProps>`
   justify-content: center;
   align-items: center;
   transition: all 0.2s;
+  padding: 1rem;
 
   ${(props) =>
     props.variant === 'primary' &&

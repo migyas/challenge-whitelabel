@@ -8,11 +8,8 @@ import {Select} from '@/components/Select';
 import {optionsBackgroundColor} from '@/utils/mocks/optionsBackgroundColor';
 import {optionsLevel} from '@/utils/mocks/optionsLevel';
 import {createUser} from '@/services/v1/user-service';
-
-const defaultOption = {
-  value: '',
-  label: 'Selecione a opção',
-};
+import {Button} from '@/components/Button';
+import {ModalContent, ModalForm} from './styles';
 
 interface ModalAddProps {
   isOpen: boolean;
@@ -21,20 +18,16 @@ interface ModalAddProps {
 }
 
 const newUserFormValidationSchema = zod.object({
-  nivel: zod
-    .object({
-      value: zod.string(),
-      label: zod.string(),
-    })
-    .required(),
+  nivel: zod.object({
+    value: zod.string(),
+    label: zod.string(),
+  }),
   nome: zod.string().min(1, 'Campo obrigatório'),
   telefone: zod.string().min(9, 'Campo obrigatório'),
-  corDeFundo: zod
-    .object({
-      value: zod.string(),
-      label: zod.string().min(1, 'Campo obrigatório'),
-    })
-    .required(),
+  corDeFundo: zod.object({
+    value: zod.string(),
+    label: zod.string(),
+  }),
   email: zod.string().min(1, 'Campo obrigatório'),
   senha: zod.string().min(8, 'Mínimo de 8 caracteres'),
 });
@@ -84,23 +77,14 @@ export function ModalAdd({isOpen, toggle, getUsers}: ModalAddProps) {
       headerIcon={<PlusCircle />}
     >
       <ModalBody>
-        <div style={{padding: '2rem 2.5rem', paddingBottom: '2rem'}}>
+        <ModalContent>
           <header>
-            <strong style={{color: '#222'}}>Novo cadastro de usuário</strong>
+            <strong>Novo cadastro de usuário</strong>
           </header>
-          <form
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '1.5rem',
-              marginTop: '2rem',
-            }}
-          >
+          <ModalForm>
             <div
               style={{
-                display: 'flex',
                 gridTemplateColumns: '1fr 1fr 1fr',
-                gap: '1rem',
               }}
             >
               <Input
@@ -130,9 +114,7 @@ export function ModalAdd({isOpen, toggle, getUsers}: ModalAddProps) {
             </div>
             <div
               style={{
-                display: 'flex',
                 gridTemplateColumns: '2fr 1fr',
-                gap: '1rem',
               }}
             >
               <Input
@@ -159,9 +141,7 @@ export function ModalAdd({isOpen, toggle, getUsers}: ModalAddProps) {
             </div>
             <div
               style={{
-                display: 'flex',
                 gridTemplateColumns: '1fr 1fr 1fr',
-                gap: '2rem',
               }}
             >
               <Controller
@@ -180,15 +160,17 @@ export function ModalAdd({isOpen, toggle, getUsers}: ModalAddProps) {
                 )}
               />
             </div>
-          </form>
-        </div>
+          </ModalForm>
+        </ModalContent>
       </ModalBody>
       <ModalFooter>
-        <div style={{padding: '3rem 2.5rem', gap: '1rem', display: 'flex'}}>
-          <button onClick={handleToggleReset}>Cancelar</button>
-          <button type="submit" onClick={handleSubmit(onSubmit)}>
-            Criar
-          </button>
+        <div style={{padding: '2rem 2.5rem', gap: '1rem', display: 'flex'}}>
+          <Button
+            text="Cancelar"
+            variant="outlined"
+            onClick={handleToggleReset}
+          />
+          <Button text="Criar" type="submit" onClick={handleSubmit(onSubmit)} />
         </div>
       </ModalFooter>
     </Modal>

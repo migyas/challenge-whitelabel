@@ -3,7 +3,7 @@ import {ButtonContainer, ButtonVariants} from './styles';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
-  variant: ButtonVariants;
+  variant?: ButtonVariants;
 }
 
 export function Button({text, variant = 'primary', ...props}: ButtonProps) {
