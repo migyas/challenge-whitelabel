@@ -1,9 +1,14 @@
-import { Container } from "./styles";
+import animatePresence from '@/components/AnimatePresence';
+import {Container} from './styles';
 
-export default function Settings() {
+function Settings() {
   return (
     <Container>
       <h1>Configurações</h1>
     </Container>
   );
 }
+
+export default animatePresence(Settings, {
+  animationType: 'onlyFadeIn',
+});

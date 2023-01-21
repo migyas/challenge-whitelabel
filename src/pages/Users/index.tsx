@@ -6,6 +6,7 @@ import useDisclosure from '@/hooks/useDisclosure';
 import {getAllUsers} from '@/services/v1/user-service';
 import {BackgroundColorDot, ButtonAdd, Container, UsersList} from './styles';
 import {ModalAdd} from './ModalAdd';
+import animatePresence from '@/components/AnimatePresence';
 
 interface User {
   nivel: string;
@@ -20,7 +21,7 @@ interface VariantsType {
   [key: string]: string;
 }
 
-export default function Users() {
+function Users() {
   const [users, setUsers] = useState<User[]>([]);
   const {isOpen, toggle} = useDisclosure();
 
@@ -92,3 +93,7 @@ export default function Users() {
     </Container>
   );
 }
+
+export default animatePresence(Users, {
+  animationType: 'onlyFadeIn',
+});

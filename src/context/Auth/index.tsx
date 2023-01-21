@@ -44,7 +44,7 @@ export const AuthProvider = ({children}: {children?: React.ReactNode}) => {
       window.location.reload();
     } catch (err) {
       setLoading(false);
-      throw new Error((err as Error).message);
+      throw new Error('Usuário não encontrado');
     }
   };
 

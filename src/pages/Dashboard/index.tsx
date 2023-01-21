@@ -1,9 +1,14 @@
+import animatePresence from '@/components/AnimatePresence';
 import {Container} from './styles';
 
-export default function Dashboard() {
+function Dashboard() {
   return (
     <Container>
       <h1>Geral</h1>
     </Container>
   );
 }
+
+export default animatePresence(Dashboard, {
+  animationType: 'onlyFadeIn',
+});

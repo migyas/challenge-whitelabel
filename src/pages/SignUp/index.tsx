@@ -9,6 +9,7 @@ import genericLogo from '@/assets/logo-generic.svg';
 import {FormContainer, SignContainer} from './styles';
 import Input from '@/components/Input';
 import {zodResolver} from '@hookform/resolvers/zod';
+import animatePresence from '@/components/AnimatePresence';
 
 const newUserFormValidationSchema = zod
   .object({
@@ -29,7 +30,7 @@ const newUserFormValidationSchema = zod
 
 export type NewUserFormData = zod.infer<typeof newUserFormValidationSchema>;
 
-export default function SignUp() {
+function SignUp() {
   const {
     register,
     handleSubmit,
@@ -137,3 +138,7 @@ export default function SignUp() {
     </SignContainer>
   );
 }
+
+export default animatePresence(SignUp, {
+  animationType: 'slideRight',
+});

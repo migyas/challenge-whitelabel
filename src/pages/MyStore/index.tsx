@@ -1,9 +1,14 @@
-import { Container } from "./styles";
+import animatePresence from '@/components/AnimatePresence';
+import {Container} from './styles';
 
-export default function MyStore() {
+function MyStore() {
   return (
     <Container>
       <h1>Minha loja</h1>
     </Container>
   );
 }
+
+export default animatePresence(MyStore, {
+  animationType: 'onlyFadeIn',
+});
