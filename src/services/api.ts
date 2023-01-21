@@ -1,5 +1,5 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: "http://localhost:3004",
+  baseURL: import.meta.env.REACT_API_URL,
 });
