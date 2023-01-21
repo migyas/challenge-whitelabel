@@ -124,6 +124,7 @@ function Users() {
         isOpen={isOpenModalAdd}
         toggle={toggleModalAdd}
         getUsers={getUsers}
+        setUsers={setUsers}
       />
       <ModalEdit
         isOpen={isOpenModalEdit}

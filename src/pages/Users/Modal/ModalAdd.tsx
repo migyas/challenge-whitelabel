@@ -11,14 +11,17 @@ import {Button} from '@/components/Button';
 import {InputWrapper, ModalContent, ModalForm} from './styles';
 import useCustomToast from '@/hooks/useCustomToast';
 import {NewUserFormData, newUserFormValidationSchema} from '../UserSchema';
+import {Dispatch, SetStateAction} from 'react';
+import {UserData} from '..';
 
 interface ModalAddProps {
   isOpen: boolean;
   toggle: () => void;
   getUsers: () => Promise<void>;
+  setUsers: Dispatch<SetStateAction<UserData[]>>;
 }
 
-export function ModalAdd({isOpen, toggle, getUsers}: ModalAddProps) {
+export function ModalAdd({isOpen, toggle, getUsers, setUsers}: ModalAddProps) {
   const toast = useCustomToast();
   const {
     register,
@@ -35,11 +38,12 @@ export function ModalAdd({isOpen, toggle, getUsers}: ModalAddProps) {
 
   async function onSubmit({nivel, corDeFundo, ...rest}: NewUserFormData) {
     try {
-      await createUser({
+      const user = await createUser({
         ...rest,
         nivel: nivel.value,
         corDeFundo: corDeFundo.value,
       });
+      setUsers((prevState) => [...prevState, user]);
       toast({
         data: {
           color: 'success',
