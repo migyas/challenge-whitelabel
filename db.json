@@ -2,20 +2,20 @@
   "users": [
     {
       "nome": "Yan Dias",
-      "telefone": "1212121",
-      "email": "admin@greenbelt.com",
+      "telefone": "(12) 1 2121-2121",
+      "email": "admin2@greenbelt.com",
       "senha": "12345678",
       "nivel": "operator",
       "corDeFundo": "gray",
       "id": 2
     },
     {
-      "nome": "dasda",
-      "telefone": "(11) 1 1111-1111",
+      "nome": "Testando de novo",
+      "telefone": "(61) 9 9998-9898",
       "email": "admin@greenbelt.com",
       "senha": "12345678",
       "nivel": "admin",
-      "corDeFundo": "blue",
+      "corDeFundo": "gray",
       "id": 3
     }
   ],

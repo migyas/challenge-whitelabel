@@ -5,19 +5,24 @@ async function getAllUsers() {
   return data;
 }
 
+async function getUser(id: number) {
+  const {data} = await api.get(`/users/${id}`);
+  return data;
+}
+
 async function createUser(user: any) {
   const {data} = await api.post('/users', user);
   return data;
 }
 
-async function updateUser(user: any, id: string) {
+async function updateUser(user: any, id: number) {
   const {data} = await api.put(`/users/${id}`, user);
   return data;
 }
 
-async function deleteUser(id: string) {
+async function deleteUser(id: number) {
   const {data} = await api.delete(`/users/${id}`);
   return data;
 }
 
-export {getAllUsers, createUser, updateUser, deleteUser};
+export {getAllUsers, createUser, updateUser, deleteUser, getUser};

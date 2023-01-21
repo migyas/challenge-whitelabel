@@ -1,10 +1,11 @@
-import {useEffect, useState} from 'react';
+import {Fragment, useEffect, useState} from 'react';
 import {Pencil} from 'phosphor-react';
 import useDisclosure from '@/hooks/useDisclosure';
 import {getAllUsers} from '@/services/v1/user-service';
 import {BackgroundColorDot, ButtonAdd, Container, UsersList} from './styles';
 import {ModalAdd} from './Modal/ModalAdd';
 import animatePresence from '@/components/AnimatePresence';
+import {ModalEdit} from './Modal/ModalEdit';
 
 interface User {
   id: number;
@@ -22,7 +23,9 @@ interface VariantsType {
 
 function Users() {
   const [users, setUsers] = useState<User[]>([]);
-  const {isOpen, toggle} = useDisclosure();
+  const [user, setUser] = useState<User>({} as User);
+  const {isOpen: isOpenModalAdd, toggle: toggleModalAdd} = useDisclosure();
+  const {isOpen: isOpenModalEdit, toggle: toggleModalEdit} = useDisclosure();
 
   const VARIANTS_ROLES: VariantsType = {
     operator: 'Lojista',
@@ -49,7 +52,7 @@ function Users() {
     <Container>
       <h1>Usuários</h1>
       <div>
-        <ButtonAdd onClick={toggle}>Adicionar Usuário</ButtonAdd>
+        <ButtonAdd onClick={toggleModalAdd}>Adicionar Usuário</ButtonAdd>
       </div>
       <UsersList>
         <table>
@@ -66,29 +69,47 @@ function Users() {
           <tbody>
             {users.map((user) => {
               return (
-                <tr key={user.id}>
-                  <td>{user.nome}</td>
-                  <td>{user.telefone}</td>
-                  <td>{user.email}</td>
-                  <td>{VARIANTS_ROLES[user.nivel]}</td>
-                  <td>
-                    <div>
-                      <BackgroundColorDot color={user.corDeFundo} />
-                      {VARIANTS_BACKGROUNDS_COLOURS[user.corDeFundo]}
-                    </div>
-                  </td>
-                  <td>
-                    <button title="Editar">
-                      <Pencil size={20} />
-                    </button>
-                  </td>
-                </tr>
+                <Fragment key={user.id}>
+                  <tr>
+                    <td>{user.nome}</td>
+                    <td>{user.telefone}</td>
+                    <td>{user.email}</td>
+                    <td>{VARIANTS_ROLES[user.nivel]}</td>
+                    <td>
+                      <div>
+                        <BackgroundColorDot color={user.corDeFundo} />
+                        {VARIANTS_BACKGROUNDS_COLOURS[user.corDeFundo]}
+                      </div>
+                    </td>
+                    <td>
+                      <button
+                        title="Editar"
+                        onClick={() => {
+                          toggleModalEdit();
+                          setUser(user);
+                        }}
+                      >
+                        <Pencil size={20} />
+                      </button>
+                    </td>
+                  </tr>
+                </Fragment>
               );
             })}
           </tbody>
         </table>
       </UsersList>
-      <ModalAdd isOpen={isOpen} toggle={toggle} getUsers={getUsers} />
+      <ModalAdd
+        isOpen={isOpenModalAdd}
+        toggle={toggleModalAdd}
+        getUsers={getUsers}
+      />
+      <ModalEdit
+        isOpen={isOpenModalEdit}
+        toggle={toggleModalEdit}
+        getUsers={getUsers}
+        user={user}
+      />
     </Container>
   );
 }

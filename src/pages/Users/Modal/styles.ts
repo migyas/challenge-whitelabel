@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ModalContent = styled.div`
-  padding: 2rem 2.5rem;
+  padding: 1rem 2.5rem;
 
   header {
     strong {

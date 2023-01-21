@@ -16,7 +16,6 @@ export const InputContainer = styled.div`
 
   .custom-input__helper-text {
     font-size: 0.75rem;
-    margin-top: 7px;
   }
 
   .custom-input__wrapper {
@@ -77,17 +76,4 @@ export const InputContainer = styled.div`
       border-color: ${(props) => props.theme['red-500']} !important;
     }
   }
-
-  /* input {
-    border: 1px solid ${(props) => props.theme['gray-100']};
-    border-radius: 5px;
-    height: 41px;
-    padding: 0.75rem;
-    font-size: 0.875rem;
-
-    &::placeholder {
-      color: #c2c2c2;
-      font-weight: 300;
-    }
-  } */
 `;
