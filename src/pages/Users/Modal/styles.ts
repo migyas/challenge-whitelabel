@@ -34,3 +34,9 @@ export const InputWrapper = styled.div`
     grid-template-columns: 1fr;
   }
 `;
+
+export const ButtonContainer = styled.div`
+  padding: 2rem 2.5rem;
+  gap: 1rem 2.5rem;
+  display: flex;
+`;

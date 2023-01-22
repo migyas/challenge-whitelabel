@@ -20,7 +20,6 @@ interface SelectProps {
   helperText?: string;
   success?: boolean;
   error?: boolean;
-  disabled?: boolean;
 }
 
 export function Select({
@@ -31,7 +30,6 @@ export function Select({
   error,
   helperText,
   success,
-  disabled,
 }: SelectProps) {
   const {isOpen, toggle, close} = useDisclosure();
   const [position, setPosition] = useState<Position>('bottom');
@@ -82,7 +80,6 @@ export function Select({
       className={classNames('select', {
         '--success': success,
         '--error': error,
-        '--disabled': disabled,
       })}
     >
       {labelText && (

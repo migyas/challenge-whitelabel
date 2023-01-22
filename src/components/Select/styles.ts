@@ -93,7 +93,7 @@ export const Container = styled.div`
         &.--no-options {
           cursor: default;
           justify-content: center;
-          color: ${(props) => props.theme['bg-main']};
+          color: ${(props) => props.theme['bg-sidebar-default']};
 
           &:hover {
             background-color: #fff;
@@ -144,21 +144,6 @@ export const Container = styled.div`
 
     .input-wrapper__input {
       border-color: ${(props) => props.theme['red-500']};
-    }
-  }
-
-  &.--disabled {
-    pointer-events: none;
-
-    .select__label-wrapper {
-      .label-wrapper__add {
-        opacity: 0.5;
-      }
-    }
-
-    .select__input-wrapper {
-      background-color: ${(props) => props.theme['gray-100']};
-      border-color: ${(props) => props.theme['yellow-500']};
     }
   }
 `;

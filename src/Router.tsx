@@ -1,9 +1,8 @@
 import {lazy, Suspense} from 'react';
 import {Routes, Route, Navigate} from 'react-router-dom';
 import SuspenseLoader from '@/components/SuspenseLoader';
-import {getToken} from '@/utils/authUtils';
 import {DefaultLayout} from '@/layouts/DefaultLayout';
-import {getUserLogged} from '@/utils/authUtils';
+import useUser from './hooks/useUser';
 
 const routesPublic = [
   {
@@ -40,11 +39,11 @@ const routesPrivate = [
 ];
 
 export function Router() {
-  const isAuth = !!getToken();
+  const {userLogged} = useUser();
 
   return (
     <Routes>
-      {isAuth ? (
+      {userLogged ? (
         <Route path="/" element={<DefaultLayout />}>
           {routesPrivate.map((route, index) => {
             if (route.isIndex) {
@@ -67,9 +66,7 @@ export function Router() {
                 path={route.path}
                 element={
                   <Suspense fallback={<SuspenseLoader />}>
-                    <route.element
-                      getUserLoggedPermission={getUserLogged.nivel}
-                    />
+                    <route.element getUserLoggedPermission={userLogged.nivel} />
                   </Suspense>
                 }
               />
@@ -84,7 +81,7 @@ export function Router() {
           key={route.path}
           path={route.path}
           element={
-            isAuth ? (
+            !!userLogged ? (
               <Navigate to="/users" />
             ) : (
               <Suspense fallback={<SuspenseLoader />}>
@@ -94,7 +91,7 @@ export function Router() {
           }
         />
       ))}
-      {!isAuth ? (
+      {!userLogged ? (
         <Route path="*" element={<Navigate to="/signin" />} />
       ) : (
         <Route path="*" element={<Navigate to="/" />} />

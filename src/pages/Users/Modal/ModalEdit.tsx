@@ -1,3 +1,4 @@
+import {Dispatch, SetStateAction, useEffect} from 'react';
 import {PencilCircle} from 'phosphor-react';
 import {Controller, useForm} from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
@@ -7,8 +8,7 @@ import {Select} from '@/components/Select';
 import {optionsBackgroundColor} from '@/utils/mocks/optionsBackgroundColor';
 import {optionsLevel} from '@/utils/mocks/optionsLevel';
 import {Button} from '@/components/Button';
-import {InputWrapper, ModalContent, ModalForm} from './styles';
-import {Dispatch, SetStateAction, useEffect} from 'react';
+import {ButtonContainer, InputWrapper, ModalContent, ModalForm} from './styles';
 import useCustomToast from '@/hooks/useCustomToast';
 import {NewUserFormData, newUserFormValidationSchema} from '../UserSchema';
 import {CorDeFundo, UserData} from '..';
@@ -197,7 +197,7 @@ export function ModalEdit({
         </ModalContent>
       </ModalBody>
       <ModalFooter>
-        <div style={{padding: '2rem 2.5rem', gap: '1rem', display: 'flex'}}>
+        <ButtonContainer>
           <Button
             text="Cancelar"
             variant="outlined"
@@ -208,7 +208,7 @@ export function ModalEdit({
             type="submit"
             onClick={handleSubmit(onSubmit)}
           />
-        </div>
+        </ButtonContainer>
       </ModalFooter>
     </Modal>
   );

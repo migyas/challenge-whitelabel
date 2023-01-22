@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import {easeInOutQuartic} from '@/config/customAnimation';
 
 export const InputContainer = styled.div`
   display: flex;
   width: 100%;
   min-width: max-content;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ${easeInOutQuartic};
   flex-direction: column;
   border: 0;
 

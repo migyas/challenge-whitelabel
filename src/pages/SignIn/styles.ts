@@ -6,7 +6,6 @@ export const SignContainer = styled.div`
   height: 100vh;
   background: ${(props) => props.theme['white']};
   padding: 1.875rem;
-
   display: flex;
   flex-direction: column;
 

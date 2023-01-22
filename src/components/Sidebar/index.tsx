@@ -1,5 +1,4 @@
 import {
-  ChartPieSlice,
   Users,
   Storefront,
   GearSix,
@@ -25,13 +24,13 @@ export function Sidebar() {
   return (
     <SidebarContainer>
       <SidebarOverlay
-        className={classNames('', {
+        className={classNames({
           '--expand': !isOpen,
         })}
       />
       <SidebarContent
         backgroundColor={userLogged.corDeFundo}
-        className={classNames('', {
+        className={classNames({
           '--expand': isOpen,
         })}
       >

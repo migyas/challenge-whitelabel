@@ -1,7 +1,7 @@
 import {toast, ToastOptions} from 'react-toastify';
 import ToastAlert from '@/components/ToastAlert';
 
-type Colors = 'primary' | 'info' | 'success' | 'warn' | 'error';
+type Colors = 'success' | 'error';
 
 interface ToastAlertProps {
   color?: Colors;

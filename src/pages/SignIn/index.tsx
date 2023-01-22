@@ -9,10 +9,10 @@ import animatePresence from '@/components/AnimatePresence';
 import {Button} from '@/components/Button';
 import {SignInFormData, SignInFormValidationSchema} from './SignInSchema';
 import {FormContainer, SignContainer} from './styles';
-import {userLogin} from '@/utils/authUtils';
+import useUser from '@/hooks/useUser';
 
 function SignIn() {
-  const {users} = useAuth();
+  const {users, saveUserLoginLocalStorage} = useUser();
   const {
     register,
     handleSubmit,
@@ -27,10 +27,9 @@ function SignIn() {
 
   async function onSubmit(data: SignInFormData) {
     const findUserLogged = users.find((user) => user.email === data.email);
-
     if (findUserLogged) {
-      handleLogin(findUserLogged, true);
-      userLogin(findUserLogged);
+      handleLogin();
+      saveUserLoginLocalStorage(findUserLogged);
     } else {
       setError({
         name: 'Erro',

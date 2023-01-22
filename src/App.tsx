@@ -10,15 +10,18 @@ import {AuthProvider} from '@/context/Auth';
 
 import 'react-toastify/dist/ReactToastify.css';
 import '@/components/ToastAlert/toastify.css';
+import {UserProvider} from './context/Users';
 
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Suspense fallback={<SuspenseLoader />}>
         <BrowserRouter>
-          <AuthProvider>
-            <Router />
-          </AuthProvider>
+          <UserProvider>
+            <AuthProvider>
+              <Router />
+            </AuthProvider>
+          </UserProvider>
         </BrowserRouter>
       </Suspense>
       <GlobalStyle />

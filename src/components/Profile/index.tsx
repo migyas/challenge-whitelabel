@@ -6,7 +6,7 @@ export function Profile() {
 
   return (
     <ProfileContainer>
-      <button onClick={() => handleLogout()}>Sair</button>
+      <button onClick={handleLogout}>Sair</button>
       <header>
         <div>
           <strong>Yan Dias</strong>

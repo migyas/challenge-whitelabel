@@ -31,7 +31,7 @@ function SignUp() {
     resolver: zodResolver(newUserFormValidationSchema),
   });
 
-  async function onSubmit({nivel, corDeFundo, ...rest}: NewUserFormData) {
+  async function onSubmit() {
     try {
       navigate('/signin');
       reset();

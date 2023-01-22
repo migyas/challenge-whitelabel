@@ -1,7 +1,7 @@
 import {X} from 'phosphor-react';
 import {ToastContentProps} from 'react-toastify';
 
-type Colors = 'primary' | 'info' | 'success' | 'warn' | 'error';
+type Colors = 'success' | 'error';
 
 interface ToastAlertProps {
   color?: Colors;
@@ -15,7 +15,7 @@ export default function ToastAlert({
   if (!data?.color) {
     data = {
       ...data,
-      color: 'primary',
+      color: 'success',
     };
   }
 

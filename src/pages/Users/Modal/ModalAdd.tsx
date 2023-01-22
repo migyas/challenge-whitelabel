@@ -1,3 +1,4 @@
+import {Dispatch, SetStateAction} from 'react';
 import {PlusCircle} from 'phosphor-react';
 import {Controller, useForm} from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
@@ -7,10 +8,9 @@ import {Select} from '@/components/Select';
 import {optionsBackgroundColor} from '@/utils/mocks/optionsBackgroundColor';
 import {optionsLevel} from '@/utils/mocks/optionsLevel';
 import {Button} from '@/components/Button';
-import {InputWrapper, ModalContent, ModalForm} from './styles';
+import {ButtonContainer, InputWrapper, ModalContent, ModalForm} from './styles';
 import useCustomToast from '@/hooks/useCustomToast';
 import {NewUserFormData, newUserFormValidationSchema} from '../UserSchema';
-import {Dispatch, SetStateAction} from 'react';
 import {CorDeFundo, UserData} from '..';
 import useUser from '@/hooks/useUser';
 
@@ -157,14 +157,14 @@ export function ModalAdd({isOpen, toggle, setUsers}: ModalAddProps) {
         </ModalContent>
       </ModalBody>
       <ModalFooter>
-        <div style={{padding: '2rem 2.5rem', gap: '1rem', display: 'flex'}}>
+        <ButtonContainer>
           <Button
             text="Cancelar"
             variant="outlined"
             onClick={handleToggleReset}
           />
           <Button text="Criar" type="submit" onClick={handleSubmit(onSubmit)} />
-        </div>
+        </ButtonContainer>
       </ModalFooter>
     </Modal>
   );

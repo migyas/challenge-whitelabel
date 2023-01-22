@@ -1,12 +1,12 @@
 import {useState} from 'react';
 import {Pencil, Trash} from 'phosphor-react';
 import useDisclosure from '@/hooks/useDisclosure';
-import {BackgroundColorDot, ButtonAdd, Container, UsersList} from './styles';
 import {ModalAdd} from './Modal/ModalAdd';
 import animatePresence from '@/components/AnimatePresence';
 import {ModalEdit} from './Modal/ModalEdit';
 import {ModalDelete} from './Modal/ModalDelete';
 import useUser from '@/hooks/useUser';
+import {BackgroundColorDot, ButtonAdd, Container, UsersList} from './styles';
 
 export type CorDeFundo = 'gray' | 'blue';
 

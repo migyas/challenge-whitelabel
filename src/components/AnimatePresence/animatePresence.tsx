@@ -1,7 +1,6 @@
 import React from 'react';
 import AnimatePresenceComponent from './AnimatePresenceComponent';
 import {AnimatePresenceComponentProps} from '.';
-import {NavigateProps} from 'react-router-dom';
 
 function animatePresence(
   AnimationTarget: React.FC | any,

@@ -12,7 +12,7 @@
 
 .Toastify__toast-body > div {
   height: 100%;
-}
+} 
 
 .custom-toast__body {
   height: 100%;
@@ -101,15 +101,4 @@
   opacity: 0.1;
 }
 
-.--info.custom-toast__body {
-  border-color: var(--gb-feedBack-info);
-}
 
-.--info .info-icon__icon-wrapper {
-  color: var(--gb-feedBack-info);
-}
-
-.--info .info-icon__icon-wrapper::before {
-  background-color: var(--gb-feedBack-info);
-  opacity: 0.1;
-}

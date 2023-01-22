@@ -1,7 +1,7 @@
-import {classNames} from '@/utils/classNames';
-import {mask} from '@/utils/remask';
 import {forwardRef, HTMLProps, useEffect} from 'react';
 import {FieldValues, UseFormSetValue} from 'react-hook-form';
+import {classNames} from '@/utils/classNames';
+import {mask} from '@/utils/remask';
 import {InputContainer} from './styles';
 
 interface InputProps extends HTMLProps<HTMLInputElement> {
