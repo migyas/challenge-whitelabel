@@ -1,4 +1,4 @@
-import {Fragment, PropsWithChildren, useContext, useState} from 'react';
+import {useState} from 'react';
 import {Pencil, Trash} from 'phosphor-react';
 import useDisclosure from '@/hooks/useDisclosure';
 import {BackgroundColorDot, ButtonAdd, Container, UsersList} from './styles';
@@ -7,7 +7,7 @@ import animatePresence from '@/components/AnimatePresence';
 import {ModalEdit} from './Modal/ModalEdit';
 import {ModalDelete} from './Modal/ModalDelete';
 import useAuth from '@/hooks/useAuth';
-import {Navigate} from 'react-router-dom';
+import {getUserLogged} from '@/utils/authUtils';
 
 export type CorDeFundo = 'gray' | 'blue';
 
@@ -59,36 +59,36 @@ function Users() {
               <th>Nível</th>
               <th>Cor de Fundo</th>
               <th>Editar</th>
-              <th>Excluir</th>
+              {getUserLogged.nivel === 'admin' && <th>Excluir</th>}
             </tr>
           </thead>
           <tbody>
             {users.length > 0 ? (
               users.map((user) => {
                 return (
-                  <Fragment key={user.id}>
-                    <tr>
-                      <td>{user.nome}</td>
-                      <td>{user.telefone}</td>
-                      <td>{user.email}</td>
-                      <td>{VARIANTS_ROLES[user.nivel]}</td>
-                      <td>
-                        <div>
-                          <BackgroundColorDot color={user.corDeFundo} />
-                          {VARIANTS_BACKGROUNDS_COLOURS[user.corDeFundo]}
-                        </div>
-                      </td>
-                      <td>
-                        <button
-                          title="Editar"
-                          onClick={() => {
-                            toggleModalEdit();
-                            setUser(user);
-                          }}
-                        >
-                          <Pencil size={20} />
-                        </button>
-                      </td>
+                  <tr key={user.id}>
+                    <td>{user.nome}</td>
+                    <td>{user.telefone}</td>
+                    <td>{user.email}</td>
+                    <td>{VARIANTS_ROLES[user.nivel]}</td>
+                    <td>
+                      <div>
+                        <BackgroundColorDot color={user.corDeFundo} />
+                        {VARIANTS_BACKGROUNDS_COLOURS[user.corDeFundo]}
+                      </div>
+                    </td>
+                    <td>
+                      <button
+                        title="Editar"
+                        onClick={() => {
+                          toggleModalEdit();
+                          setUser(user);
+                        }}
+                      >
+                        <Pencil size={20} />
+                      </button>
+                    </td>
+                    {getUserLogged.nivel === 'admin' && (
                       <td>
                         <button
                           title="Deletar"
@@ -100,8 +100,8 @@ function Users() {
                           <Trash size={20} />
                         </button>
                       </td>
-                    </tr>
-                  </Fragment>
+                    )}
+                  </tr>
                 );
               })
             ) : (

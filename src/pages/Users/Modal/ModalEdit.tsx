@@ -12,6 +12,7 @@ import {Dispatch, SetStateAction, useEffect} from 'react';
 import useCustomToast from '@/hooks/useCustomToast';
 import {NewUserFormData, newUserFormValidationSchema} from '../UserSchema';
 import {CorDeFundo, UserData} from '..';
+import {getUserLogged} from '@/utils/authUtils';
 
 interface ModalEditProps {
   isOpen: boolean;
@@ -47,6 +48,10 @@ export function ModalEdit({
       (option) => option.value === value,
     );
     return findCorDeFundo;
+  }
+
+  function optionsLevelFilteredOperator() {
+    return optionsLevel.filter((option) => option.value === 'operator');
   }
 
   function getNivelOption(value: string) {
@@ -160,7 +165,11 @@ export function ModalEdit({
                 render={({field}) => (
                   <Select
                     {...field}
-                    options={optionsLevel}
+                    options={
+                      getUserLogged.nivel === 'operator'
+                        ? optionsLevelFilteredOperator()
+                        : optionsLevel
+                    }
                     labelText="Nível"
                     helperText={errors.nivel?.message && 'Campo obrigatório'}
                     error={!!errors.nivel}

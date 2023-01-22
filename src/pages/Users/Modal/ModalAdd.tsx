@@ -12,6 +12,7 @@ import useCustomToast from '@/hooks/useCustomToast';
 import {NewUserFormData, newUserFormValidationSchema} from '../UserSchema';
 import {Dispatch, SetStateAction} from 'react';
 import {CorDeFundo, UserData} from '..';
+import {getUserLogged} from '@/utils/authUtils';
 
 interface ModalAddProps {
   isOpen: boolean;
@@ -33,6 +34,10 @@ export function ModalAdd({isOpen, toggle, setUsers}: ModalAddProps) {
     reValidateMode: 'onBlur',
     resolver: zodResolver(newUserFormValidationSchema),
   });
+
+  function optionsLevelFilteredOperator() {
+    return optionsLevel.filter((option) => option.value === 'operator');
+  }
 
   async function onSubmit({nivel, corDeFundo, ...rest}: NewUserFormData) {
     try {
@@ -120,7 +125,11 @@ export function ModalAdd({isOpen, toggle, setUsers}: ModalAddProps) {
                 render={({field}) => (
                   <Select
                     {...field}
-                    options={optionsLevel}
+                    options={
+                      getUserLogged.nivel === 'operator'
+                        ? optionsLevelFilteredOperator()
+                        : optionsLevel
+                    }
                     labelText="Nível"
                     helperText={errors.nivel?.message && 'Campo obrigatório'}
                     error={!!errors.nivel}
