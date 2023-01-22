@@ -46,3 +46,15 @@ npm dev
 `/my-store` - My store screen to access only 'operator' permission
 
 `/settings` - Settings screen
+
+## Permissions
+
+Level `admin`
+
+email: `admin@whitelabel.com`
+password: `12345678`
+
+Level `operator`
+
+email: `lojista@whitelabel.com`
+password: `12345678`
