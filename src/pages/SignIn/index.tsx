@@ -66,15 +66,12 @@ function SignIn() {
           helperText={errors.senha?.message?.toString()}
           error={!!errors.senha}
         />
-        <Button
-          text="Registrar"
-          type="submit"
-          onClick={handleSubmit(onSubmit)}
-        />
+        <Button text="Entrar" type="submit" onClick={handleSubmit(onSubmit)} />
       </FormContainer>
       <footer>
         <span>
-          Ainda não possui uma conta? <NavLink to="/signup">Entrar</NavLink>
+          Ainda não possui uma conta?{' '}
+          <NavLink to="/signup">Registrar-se</NavLink>
         </span>
       </footer>
     </SignContainer>
