@@ -16,9 +16,10 @@ import {
   SidebarOverlay,
 } from './styles';
 import useDisclosure from '@/hooks/useDisclosure';
-import {getUserLogged} from '@/utils/authUtils';
+import useUser from '@/hooks/useUser';
 
 export function Sidebar() {
+  const {userLogged} = useUser();
   const {isOpen, toggle} = useDisclosure();
 
   return (
@@ -29,7 +30,7 @@ export function Sidebar() {
         })}
       />
       <SidebarContent
-        backgroundColor={getUserLogged.corDeFundo}
+        backgroundColor={userLogged.corDeFundo}
         className={classNames('', {
           '--expand': isOpen,
         })}
@@ -39,13 +40,13 @@ export function Sidebar() {
           <strong>Nome Empresa</strong>
         </header>
         <nav>
-          <SidebarNavItem backgroundColor={getUserLogged.corDeFundo} to="/">
+          <SidebarNavItem backgroundColor={userLogged.corDeFundo} to="/">
             <Users size={18} />
             <strong>Usuários</strong>
           </SidebarNavItem>
-          {getUserLogged.nivel === 'admin' ? (
+          {userLogged.nivel === 'admin' ? (
             <SidebarNavItem
-              backgroundColor={getUserLogged.corDeFundo}
+              backgroundColor={userLogged.corDeFundo}
               to="/operation"
             >
               <Calculator size={18} />
@@ -53,7 +54,7 @@ export function Sidebar() {
             </SidebarNavItem>
           ) : (
             <SidebarNavItem
-              backgroundColor={getUserLogged.corDeFundo}
+              backgroundColor={userLogged.corDeFundo}
               to="/my-store"
             >
               <Storefront size={18} />
@@ -63,7 +64,7 @@ export function Sidebar() {
         </nav>
         <footer>
           <SidebarNavItem
-            backgroundColor={getUserLogged.corDeFundo}
+            backgroundColor={userLogged.corDeFundo}
             to="/settings"
           >
             <GearSix size={18} />

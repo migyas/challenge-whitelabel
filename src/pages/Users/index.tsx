@@ -6,8 +6,7 @@ import {ModalAdd} from './Modal/ModalAdd';
 import animatePresence from '@/components/AnimatePresence';
 import {ModalEdit} from './Modal/ModalEdit';
 import {ModalDelete} from './Modal/ModalDelete';
-import useAuth from '@/hooks/useAuth';
-import {getUserLogged} from '@/utils/authUtils';
+import useUser from '@/hooks/useUser';
 
 export type CorDeFundo = 'gray' | 'blue';
 
@@ -26,7 +25,7 @@ interface VariantsType {
 }
 
 function Users() {
-  const {users, setUsers} = useAuth();
+  const {users, setUsers, userLogged} = useUser();
   const [user, setUser] = useState<UserData>({} as UserData);
   const {isOpen: isOpenModalAdd, toggle: toggleModalAdd} = useDisclosure();
   const {isOpen: isOpenModalEdit, toggle: toggleModalEdit} = useDisclosure();
@@ -59,7 +58,7 @@ function Users() {
               <th>Nível</th>
               <th>Cor de Fundo</th>
               <th>Editar</th>
-              {getUserLogged.nivel === 'admin' && <th>Excluir</th>}
+              {userLogged.nivel === 'admin' && <th>Excluir</th>}
             </tr>
           </thead>
           <tbody>
@@ -88,7 +87,7 @@ function Users() {
                         <Pencil size={20} />
                       </button>
                     </td>
-                    {getUserLogged.nivel === 'admin' && (
+                    {userLogged.nivel === 'admin' && (
                       <td>
                         <button
                           title="Deletar"

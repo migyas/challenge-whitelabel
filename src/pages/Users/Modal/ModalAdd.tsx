@@ -12,7 +12,7 @@ import useCustomToast from '@/hooks/useCustomToast';
 import {NewUserFormData, newUserFormValidationSchema} from '../UserSchema';
 import {Dispatch, SetStateAction} from 'react';
 import {CorDeFundo, UserData} from '..';
-import {getUserLogged} from '@/utils/authUtils';
+import useUser from '@/hooks/useUser';
 
 interface ModalAddProps {
   isOpen: boolean;
@@ -22,6 +22,7 @@ interface ModalAddProps {
 
 export function ModalAdd({isOpen, toggle, setUsers}: ModalAddProps) {
   const toast = useCustomToast();
+  const {userLogged} = useUser();
   const {
     register,
     handleSubmit,
@@ -126,7 +127,7 @@ export function ModalAdd({isOpen, toggle, setUsers}: ModalAddProps) {
                   <Select
                     {...field}
                     options={
-                      getUserLogged.nivel === 'operator'
+                      userLogged.nivel === 'operator'
                         ? optionsLevelFilteredOperator()
                         : optionsLevel
                     }

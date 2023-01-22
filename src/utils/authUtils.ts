@@ -1,5 +1,3 @@
-import {UserData} from '@/pages/Users';
-
 export function getToken() {
   return sessionStorage.getItem('token') || localStorage.getItem('token');
 }
@@ -17,8 +15,3 @@ export function removeToken() {
   localStorage.removeItem('token');
   localStorage.clear();
 }
-
-export const userLogin = (findUserLogged: UserData) => {
-  localStorage.setItem('login', JSON.stringify(findUserLogged));
-};
-export const getUserLogged = JSON.parse(localStorage.getItem('login')!);

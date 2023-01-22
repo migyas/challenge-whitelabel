@@ -12,7 +12,7 @@ import {Dispatch, SetStateAction, useEffect} from 'react';
 import useCustomToast from '@/hooks/useCustomToast';
 import {NewUserFormData, newUserFormValidationSchema} from '../UserSchema';
 import {CorDeFundo, UserData} from '..';
-import {getUserLogged} from '@/utils/authUtils';
+import useUser from '@/hooks/useUser';
 
 interface ModalEditProps {
   isOpen: boolean;
@@ -30,6 +30,7 @@ export function ModalEdit({
   users,
 }: ModalEditProps) {
   const toast = useCustomToast();
+  const {userLogged} = useUser();
   const {
     register,
     handleSubmit,
@@ -166,7 +167,7 @@ export function ModalEdit({
                   <Select
                     {...field}
                     options={
-                      getUserLogged.nivel === 'operator'
+                      userLogged.nivel === 'operator'
                         ? optionsLevelFilteredOperator()
                         : optionsLevel
                     }

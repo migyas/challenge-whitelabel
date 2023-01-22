@@ -12,8 +12,6 @@ type SignInProps = {
 export interface UseAuthProps {
   isAuth: boolean;
   loading: boolean;
-  users: UserData[];
-  setUsers: Dispatch<SetStateAction<UserData[]>>;
   handleLogin(userData: SignInProps, keepAuth?: boolean): Promise<void>;
   handleLogout(): Promise<void>;
 }
@@ -25,10 +23,6 @@ export const AuthContext = createContext<UseAuthProps>({
   async handleLogout() {
     console.warn('auth context not provider');
   },
-  setUsers() {
-    console.warn('auth context not provider');
-  },
-  users: [],
   isAuth: false,
   loading: false,
 });
@@ -87,8 +81,6 @@ export const AuthProvider = ({children}: {children?: React.ReactNode}) => {
   return (
     <AuthContext.Provider
       value={{
-        setUsers,
-        users,
         loading,
         isAuth,
         handleLogin,
