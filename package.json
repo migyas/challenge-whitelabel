@@ -10,9 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
-    "axios": "^1.2.3",
     "framer-motion": "^8.5.0",
-    "json-server": "^0.17.1",
     "phosphor-react": "^1.4.1",
     "pnpm": "^7.25.1",
     "prettier": "^2.8.3",
