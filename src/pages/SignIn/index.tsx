@@ -74,8 +74,7 @@ function SignIn() {
       </FormContainer>
       <footer>
         <span>
-          Ainda não possui uma conta?{' '}
-          <NavLink to="/signup">Registre-se</NavLink>
+          Ainda não possui uma conta? <NavLink to="/signup">Entrar</NavLink>
         </span>
       </footer>
     </SignContainer>

@@ -5,7 +5,6 @@ import {Select} from '@/components/Select';
 import Input from '@/components/Input';
 import animatePresence from '@/components/AnimatePresence';
 import {Button} from '@/components/Button';
-import {createUser} from '@/services/v1/user-service';
 import {optionsBackgroundColor} from '@/utils/mocks/optionsBackgroundColor';
 import {optionsLevel} from '@/utils/mocks/optionsLevel';
 import {FormContainer, SignContainer} from './styles';
@@ -34,11 +33,6 @@ function SignUp() {
 
   async function onSubmit({nivel, corDeFundo, ...rest}: NewUserFormData) {
     try {
-      await createUser({
-        ...rest,
-        nivel: nivel.value,
-        corDeFundo: corDeFundo.value,
-      });
       navigate('/signin');
       reset();
     } catch {
