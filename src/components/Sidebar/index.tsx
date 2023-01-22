@@ -29,7 +29,7 @@ export function Sidebar() {
         })}
       />
       <SidebarContent
-        backgroundColor={userLogged.corDeFundo}
+        variant={userLogged.corDeFundo}
         className={classNames({
           '--expand': isOpen,
         })}
@@ -39,33 +39,24 @@ export function Sidebar() {
           <strong>Nome Empresa</strong>
         </header>
         <nav>
-          <SidebarNavItem backgroundColor={userLogged.corDeFundo} to="/">
+          <SidebarNavItem variant={userLogged.corDeFundo} to="/">
             <Users size={18} />
             <strong>Usuários</strong>
           </SidebarNavItem>
           {userLogged.nivel === 'admin' ? (
-            <SidebarNavItem
-              backgroundColor={userLogged.corDeFundo}
-              to="/operation"
-            >
+            <SidebarNavItem variant={userLogged.corDeFundo} to="/operation">
               <Calculator size={18} />
               <strong>Operação</strong>
             </SidebarNavItem>
           ) : (
-            <SidebarNavItem
-              backgroundColor={userLogged.corDeFundo}
-              to="/my-store"
-            >
+            <SidebarNavItem variant={userLogged.corDeFundo} to="/my-store">
               <Storefront size={18} />
               <strong>Minha loja</strong>
             </SidebarNavItem>
           )}
         </nav>
         <footer>
-          <SidebarNavItem
-            backgroundColor={userLogged.corDeFundo}
-            to="/settings"
-          >
+          <SidebarNavItem variant={userLogged.corDeFundo} to="/settings">
             <GearSix size={18} />
             <strong>Configurações</strong>
           </SidebarNavItem>

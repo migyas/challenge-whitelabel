@@ -16,22 +16,30 @@ const BACKGROUND_COLORS__ACTIVE = {
   blue: 'blue-500',
 } as const;
 
-export const SidebarNavItem = styled(NavLink)<BackgroundColorProps>`
+export const MyNavLink = styled(NavLink)``;
+
+export const SidebarNavItem = styled(MyNavLink)<BackgroundColorProps>`
   display: flex;
   align-items: center;
   padding: 1rem;
   text-decoration: none;
-  color: ${(props) => props.theme[COLORS_TEXTS[props.backgroundColor]]};
+  color: ${(props) =>
+    props.theme[COLORS_TEXTS[props.variant]] ||
+    props.theme['bg-sidebar-item-default']};
   transition: all 0.2s;
   gap: 0.5rem;
 
   &.active {
     background: ${(props) =>
-      props.theme[BACKGROUND_COLORS__ACTIVE[props.backgroundColor]]};
-    border-left: 4px solid ${(props) => props.theme['yellow-500']};
+      props.theme[BACKGROUND_COLORS__ACTIVE[props.variant]] ||
+      props.theme['bg-sidebar-item-default']};
+    border-left: 4px solid
+      ${(props) =>
+        props.theme['yellow-500'] || props.theme['bg-sidebar-item-default']};
     padding: 1rem 1.75rem;
     color: ${(props) =>
-      props.theme[COLORS_TEXTS__ACTIVE[props.backgroundColor]]};
+      props.theme[COLORS_TEXTS__ACTIVE[props.variant]] ||
+      props.theme['bg-sidebar-item-default']};
   }
 `;
 
@@ -60,12 +68,13 @@ const BACKGROUND_COLORS = {
 } as const;
 
 interface BackgroundColorProps {
-  backgroundColor: keyof typeof BACKGROUND_COLORS;
+  variant: keyof typeof BACKGROUND_COLORS;
 }
 
 export const SidebarContent = styled.div<BackgroundColorProps>`
   background: ${(props) =>
-    props.theme[BACKGROUND_COLORS[props.backgroundColor]]};
+    props.theme[BACKGROUND_COLORS[props.variant]] ||
+    props.theme['bg-sidebar-default']};
   width: 16rem;
   height: 100vh;
   display: flex;
