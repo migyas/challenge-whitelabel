@@ -3,12 +3,10 @@ import {useForm} from 'react-hook-form';
 import {NavLink} from 'react-router-dom';
 import genericLogo from '@/assets/logo-generic.svg';
 import useAuth from '@/hooks/useAuth';
-import {getAllUsers} from '@/services/v1/user-service';
 import Input from '@/components/Input';
 import {zodResolver} from '@hookform/resolvers/zod';
 import animatePresence from '@/components/AnimatePresence';
 import {Button} from '@/components/Button';
-import {NewUserFormData} from '@/pages/Users/UserSchema';
 import {SignInFormData, SignInFormValidationSchema} from './SignInSchema';
 import {FormContainer, SignContainer} from './styles';
 
@@ -23,23 +21,7 @@ function SignIn() {
     resolver: zodResolver(SignInFormValidationSchema),
   });
   const [error, setError] = useState<Error | null>(null);
-  const [users, setUsers] = useState<NewUserFormData[]>([]);
   const {handleLogin} = useAuth();
-
-  async function getUsers() {
-    try {
-      const data = await getAllUsers();
-      setUsers(data);
-    } catch {
-      throw new Error('Servidor fora do ar');
-    }
-  }
-
-  // useEffect(() => {
-  //   (async () => {
-  //     getUsers();
-  //   })();
-  // }, []);
 
   async function onSubmit(data: SignInFormData) {
     if (data.email === 'admin@whitelabel.com' && data.senha === '12345678') {

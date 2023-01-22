@@ -1,7 +1,6 @@
-import {createContext, useEffect, useState} from 'react';
+import {createContext, useState} from 'react';
 import {removeToken, setToken} from '@/utils/authUtils';
 import {redirect} from 'react-router-dom';
-import {api} from '@/services/api';
 import {NewUserFormData} from '@/pages/Users/UserSchema';
 
 type SignInProps = {
@@ -34,13 +33,6 @@ export const AuthProvider = ({children}: {children?: React.ReactNode}) => {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState<NewUserFormData | Record<string, any>>({});
 
-  useEffect(() => {
-    (async () => {
-      const {data} = await api.get('login');
-      setUser(data);
-    })();
-  }, []);
-
   async function handleLogin(userData: NewUserFormData, keepAuth?: boolean) {
     try {
       setLoading(true);
@@ -59,7 +51,7 @@ export const AuthProvider = ({children}: {children?: React.ReactNode}) => {
     setLoading(true);
 
     try {
-      await api.put(`login`);
+      // await api.put(`login`);
       setIsAuth(false);
       setUser({});
       removeToken();

@@ -1,7 +1,6 @@
 import {Fragment, useEffect, useState} from 'react';
 import {Pencil, Trash} from 'phosphor-react';
 import useDisclosure from '@/hooks/useDisclosure';
-import {getAllUsers} from '@/services/v1/user-service';
 import {BackgroundColorDot, ButtonAdd, Container, UsersList} from './styles';
 import {ModalAdd} from './Modal/ModalAdd';
 import animatePresence from '@/components/AnimatePresence';
@@ -23,7 +22,17 @@ interface VariantsType {
 }
 
 function Users() {
-  const [users, setUsers] = useState<UserData[]>([]);
+  const [users, setUsers] = useState<UserData[]>([
+    {
+      nome: 'Yan Dias',
+      telefone: '(61)9 9386-8323',
+      email: 'admin@whitelabel.com',
+      senha: '12345678',
+      nivel: 'admin',
+      corDeFundo: 'gray',
+      id: 1,
+    },
+  ]);
   const [user, setUser] = useState<UserData>({} as UserData);
   const {isOpen: isOpenModalAdd, toggle: toggleModalAdd} = useDisclosure();
   const {isOpen: isOpenModalEdit, toggle: toggleModalEdit} = useDisclosure();
@@ -39,17 +48,6 @@ function Users() {
     gray: 'Cinza (Padrão)',
     blue: 'Azul',
   };
-
-  async function getUsers() {
-    const data = await getAllUsers();
-    setUsers(data);
-  }
-
-  useEffect(() => {
-    (async () => {
-      await getUsers();
-    })();
-  }, []);
 
   return (
     <Container>
@@ -123,21 +121,19 @@ function Users() {
       <ModalAdd
         isOpen={isOpenModalAdd}
         toggle={toggleModalAdd}
-        getUsers={getUsers}
         setUsers={setUsers}
       />
+      {/* 
       <ModalEdit
         isOpen={isOpenModalEdit}
         toggle={toggleModalEdit}
-        getUsers={getUsers}
         user={user}
       />
       <ModalDelete
         isOpen={isOpenModalDelete}
         toggle={toggleModalDelete}
-        getUsers={getUsers}
         user={user}
-      />
+      /> */}
     </Container>
   );
 }

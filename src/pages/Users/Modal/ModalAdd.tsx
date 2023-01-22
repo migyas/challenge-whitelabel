@@ -6,7 +6,6 @@ import {Modal, ModalBody, ModalFooter} from '@/components/Modal';
 import {Select} from '@/components/Select';
 import {optionsBackgroundColor} from '@/utils/mocks/optionsBackgroundColor';
 import {optionsLevel} from '@/utils/mocks/optionsLevel';
-import {createUser} from '@/services/v1/user-service';
 import {Button} from '@/components/Button';
 import {InputWrapper, ModalContent, ModalForm} from './styles';
 import useCustomToast from '@/hooks/useCustomToast';
@@ -14,14 +13,15 @@ import {NewUserFormData, newUserFormValidationSchema} from '../UserSchema';
 import {Dispatch, SetStateAction} from 'react';
 import {UserData} from '..';
 
+type CorDeFundo = 'gray' | 'blue';
+
 interface ModalAddProps {
   isOpen: boolean;
   toggle: () => void;
-  getUsers: () => Promise<void>;
   setUsers: Dispatch<SetStateAction<UserData[]>>;
 }
 
-export function ModalAdd({isOpen, toggle, getUsers, setUsers}: ModalAddProps) {
+export function ModalAdd({isOpen, toggle, setUsers}: ModalAddProps) {
   const toast = useCustomToast();
   const {
     register,
@@ -38,12 +38,13 @@ export function ModalAdd({isOpen, toggle, getUsers, setUsers}: ModalAddProps) {
 
   async function onSubmit({nivel, corDeFundo, ...rest}: NewUserFormData) {
     try {
-      const user = await createUser({
+      const newUser = {
+        id: new Date().getMilliseconds(),
         ...rest,
         nivel: nivel.value,
-        corDeFundo: corDeFundo.value,
-      });
-      setUsers((prevState) => [...prevState, user]);
+        corDeFundo: corDeFundo.value as CorDeFundo,
+      };
+      setUsers((prevState) => [...prevState, newUser]);
       toast({
         data: {
           color: 'success',
@@ -60,7 +61,6 @@ export function ModalAdd({isOpen, toggle, getUsers, setUsers}: ModalAddProps) {
       });
       throw new Error('Servidor fora do ar');
     } finally {
-      // getUsers();
       toggle();
     }
   }
