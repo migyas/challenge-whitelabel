@@ -11,16 +11,23 @@ import {InputWrapper, ModalContent, ModalForm} from './styles';
 import {Dispatch, SetStateAction, useEffect} from 'react';
 import useCustomToast from '@/hooks/useCustomToast';
 import {NewUserFormData, newUserFormValidationSchema} from '../UserSchema';
-import {UserData} from '..';
+import {CorDeFundo, UserData} from '..';
 
 interface ModalEditProps {
   isOpen: boolean;
   toggle: () => void;
   user: UserData;
+  users: UserData[];
   setUsers: Dispatch<SetStateAction<UserData[]>>;
 }
 
-export function ModalEdit({isOpen, toggle, user}: ModalEditProps) {
+export function ModalEdit({
+  isOpen,
+  toggle,
+  user,
+  setUsers,
+  users,
+}: ModalEditProps) {
   const toast = useCustomToast();
   const {
     register,
@@ -62,12 +69,15 @@ export function ModalEdit({isOpen, toggle, user}: ModalEditProps) {
 
   async function onSubmit({nivel, corDeFundo, ...rest}: NewUserFormData) {
     try {
+      const findIndexUser = users.findIndex((item) => item.id === user.id);
       const updateUser = {
         ...rest,
+        id: user.id,
         nivel: nivel.value,
-        corDeFundo: corDeFundo.value,
+        corDeFundo: corDeFundo.value as CorDeFundo,
       };
-
+      users[findIndexUser] = updateUser;
+      setUsers((prevState) => [...prevState]);
       toast({
         data: {
           color: 'success',

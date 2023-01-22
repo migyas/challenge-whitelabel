@@ -1,4 +1,4 @@
-import {Fragment, useEffect, useState} from 'react';
+import {Fragment, useContext, useState} from 'react';
 import {Pencil, Trash} from 'phosphor-react';
 import useDisclosure from '@/hooks/useDisclosure';
 import {BackgroundColorDot, ButtonAdd, Container, UsersList} from './styles';
@@ -6,6 +6,9 @@ import {ModalAdd} from './Modal/ModalAdd';
 import animatePresence from '@/components/AnimatePresence';
 import {ModalEdit} from './Modal/ModalEdit';
 import {ModalDelete} from './Modal/ModalDelete';
+import useAuth from '@/hooks/useAuth';
+
+export type CorDeFundo = 'gray' | 'blue';
 
 export interface UserData {
   id: number;
@@ -22,17 +25,7 @@ interface VariantsType {
 }
 
 function Users() {
-  const [users, setUsers] = useState<UserData[]>([
-    {
-      nome: 'Yan Dias',
-      telefone: '(61)9 9386-8323',
-      email: 'admin@whitelabel.com',
-      senha: '12345678',
-      nivel: 'admin',
-      corDeFundo: 'gray',
-      id: 1,
-    },
-  ]);
+  const {users, setUsers} = useAuth();
   const [user, setUser] = useState<UserData>({} as UserData);
   const {isOpen: isOpenModalAdd, toggle: toggleModalAdd} = useDisclosure();
   const {isOpen: isOpenModalEdit, toggle: toggleModalEdit} = useDisclosure();
@@ -128,6 +121,7 @@ function Users() {
         toggle={toggleModalEdit}
         user={user}
         setUsers={setUsers}
+        users={users}
       />
       <ModalDelete
         isOpen={isOpenModalDelete}

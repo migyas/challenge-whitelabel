@@ -11,9 +11,7 @@ import {InputWrapper, ModalContent, ModalForm} from './styles';
 import useCustomToast from '@/hooks/useCustomToast';
 import {NewUserFormData, newUserFormValidationSchema} from '../UserSchema';
 import {Dispatch, SetStateAction} from 'react';
-import {UserData} from '..';
-
-type CorDeFundo = 'gray' | 'blue';
+import {CorDeFundo, UserData} from '..';
 
 interface ModalAddProps {
   isOpen: boolean;
