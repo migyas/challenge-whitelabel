@@ -3,21 +3,22 @@ import {PropsWithChildren} from 'react';
 import {Navigate} from 'react-router-dom';
 import {Container} from './styles';
 
-interface MyStoreProps extends PropsWithChildren {
+interface OperationProps extends PropsWithChildren {
   getUserLoggedPermission: string;
 }
 
-function MyStore({getUserLoggedPermission}: MyStoreProps) {
-  if (getUserLoggedPermission === 'admin') {
-    return <Navigate to="/" replace />;
+function Operation({getUserLoggedPermission}: OperationProps) {
+  if (getUserLoggedPermission === 'operator') {
+    return <Navigate to="/users" replace />;
   }
+
   return (
     <Container>
-      <h1>Minha loja</h1>
+      <h1>Operação</h1>
     </Container>
   );
 }
 
-export default animatePresence(MyStore, {
+export default animatePresence(Operation, {
   animationType: 'onlyFadeIn',
 });

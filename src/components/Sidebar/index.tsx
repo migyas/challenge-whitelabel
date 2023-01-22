@@ -4,6 +4,7 @@ import {
   Storefront,
   GearSix,
   CaretDoubleRight,
+  Calculator,
 } from 'phosphor-react';
 import {classNames} from '@/utils/classNames';
 import whiteLabelLogo from '@/assets/logo.svg';
@@ -15,11 +16,10 @@ import {
   SidebarOverlay,
 } from './styles';
 import useDisclosure from '@/hooks/useDisclosure';
-import useAuth from '@/hooks/useAuth';
+import {getUserLogged} from '@/utils/authUtils';
 
 export function Sidebar() {
   const {isOpen, toggle} = useDisclosure();
-  const {user} = useAuth();
 
   return (
     <SidebarContainer>
@@ -29,7 +29,7 @@ export function Sidebar() {
         })}
       />
       <SidebarContent
-        backgroundColor={user.corDeFundo}
+        backgroundColor={getUserLogged.corDeFundo}
         className={classNames('', {
           '--expand': isOpen,
         })}
@@ -39,21 +39,33 @@ export function Sidebar() {
           <strong>Nome Empresa</strong>
         </header>
         <nav>
-          <SidebarNavItem backgroundColor={user.corDeFundo} to="/">
-            <ChartPieSlice size={18} />
-            <strong>Geral</strong>
-          </SidebarNavItem>
-          <SidebarNavItem backgroundColor={user.corDeFundo} to="/users">
+          <SidebarNavItem backgroundColor={getUserLogged.corDeFundo} to="/">
             <Users size={18} />
             <strong>Usuários</strong>
           </SidebarNavItem>
-          <SidebarNavItem backgroundColor={user.corDeFundo} to="/my-store">
-            <Storefront size={18} />
-            <strong>Minha loja</strong>
-          </SidebarNavItem>
+          {getUserLogged.nivel === 'admin' ? (
+            <SidebarNavItem
+              backgroundColor={getUserLogged.corDeFundo}
+              to="/operation"
+            >
+              <Calculator size={18} />
+              <strong>Operação</strong>
+            </SidebarNavItem>
+          ) : (
+            <SidebarNavItem
+              backgroundColor={getUserLogged.corDeFundo}
+              to="/my-store"
+            >
+              <Storefront size={18} />
+              <strong>Minha loja</strong>
+            </SidebarNavItem>
+          )}
         </nav>
         <footer>
-          <SidebarNavItem backgroundColor={user.corDeFundo} to="/settings">
+          <SidebarNavItem
+            backgroundColor={getUserLogged.corDeFundo}
+            to="/settings"
+          >
             <GearSix size={18} />
             <strong>Configurações</strong>
           </SidebarNavItem>

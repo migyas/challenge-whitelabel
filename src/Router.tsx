@@ -3,6 +3,7 @@ import {Routes, Route, Navigate} from 'react-router-dom';
 import SuspenseLoader from '@/components/SuspenseLoader';
 import {getToken} from '@/utils/authUtils';
 import {DefaultLayout} from '@/layouts/DefaultLayout';
+import {getUserLogged} from '@/utils/authUtils';
 
 const routesPublic = [
   {
@@ -17,9 +18,9 @@ const routesPublic = [
 
 const routesPrivate = [
   {
-    path: '/',
-    element: lazy(() => import('@/pages/Dashboard')),
-    isIndex: true,
+    path: '/operation',
+    element: lazy(() => import('@/pages/Operation')),
+    isIndex: false,
   },
   {
     path: '/my-store',
@@ -27,9 +28,9 @@ const routesPrivate = [
     isIndex: false,
   },
   {
-    path: '/users',
+    path: '/',
     element: lazy(() => import('@/pages/Users')),
-    isIndex: false,
+    isIndex: true,
   },
   {
     path: '/settings',
@@ -66,7 +67,9 @@ export function Router() {
                 path={route.path}
                 element={
                   <Suspense fallback={<SuspenseLoader />}>
-                    <route.element />
+                    <route.element
+                      getUserLoggedPermission={getUserLogged.nivel}
+                    />
                   </Suspense>
                 }
               />
@@ -82,7 +85,7 @@ export function Router() {
           path={route.path}
           element={
             isAuth ? (
-              <Navigate to="/" />
+              <Navigate to="/users" />
             ) : (
               <Suspense fallback={<SuspenseLoader />}>
                 <route.element />
@@ -91,7 +94,11 @@ export function Router() {
           }
         />
       ))}
-      {!isAuth && <Route path="*" element={<Navigate to="/signin" />} />}
+      {!isAuth ? (
+        <Route path="*" element={<Navigate to="/signin" />} />
+      ) : (
+        <Route path="*" element={<Navigate to="/" />} />
+      )}
     </Routes>
   );
 }

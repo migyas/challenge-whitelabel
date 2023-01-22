@@ -1,4 +1,4 @@
-import {Fragment, useContext, useState} from 'react';
+import {Fragment, PropsWithChildren, useContext, useState} from 'react';
 import {Pencil, Trash} from 'phosphor-react';
 import useDisclosure from '@/hooks/useDisclosure';
 import {BackgroundColorDot, ButtonAdd, Container, UsersList} from './styles';
@@ -7,6 +7,7 @@ import animatePresence from '@/components/AnimatePresence';
 import {ModalEdit} from './Modal/ModalEdit';
 import {ModalDelete} from './Modal/ModalDelete';
 import useAuth from '@/hooks/useAuth';
+import {Navigate} from 'react-router-dom';
 
 export type CorDeFundo = 'gray' | 'blue';
 

@@ -2,7 +2,7 @@ import {useContext} from 'react';
 import {AuthContext} from '@/context/Auth';
 
 export default function useAuth() {
-  const {handleLogin, handleLogout, isAuth, loading, user, users, setUsers} =
+  const {handleLogin, handleLogout, isAuth, loading, users, setUsers} =
     useContext(AuthContext);
 
   return {
@@ -12,6 +12,5 @@ export default function useAuth() {
     handleLogout,
     isAuth,
     loading,
-    user,
   };
 }
