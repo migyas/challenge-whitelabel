@@ -123,17 +123,18 @@ function Users() {
         toggle={toggleModalAdd}
         setUsers={setUsers}
       />
-      {/* 
       <ModalEdit
         isOpen={isOpenModalEdit}
         toggle={toggleModalEdit}
         user={user}
+        setUsers={setUsers}
       />
       <ModalDelete
         isOpen={isOpenModalDelete}
         toggle={toggleModalDelete}
         user={user}
-      /> */}
+        setUsers={setUsers}
+      />
     </Container>
   );
 }

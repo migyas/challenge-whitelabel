@@ -1,28 +1,30 @@
 import {Button} from '@/components/Button';
 import {Modal, ModalBody, ModalFooter} from '@/components/Modal';
 import useCustomToast from '@/hooks/useCustomToast';
-import {deleteUser} from '@/services/v1/user-service';
+import {Dispatch, SetStateAction} from 'react';
 import {UserData} from '..';
 import {ModalContent} from './styles';
 
 interface ModalDeleteProps {
   isOpen: boolean;
   toggle: () => void;
-  getUsers: () => Promise<void>;
   user: UserData;
+  setUsers: Dispatch<SetStateAction<UserData[]>>;
 }
 
 export function ModalDelete({
   isOpen,
   toggle,
-  getUsers,
   user,
+  setUsers,
 }: ModalDeleteProps) {
   const toast = useCustomToast();
 
   async function handleDeleteUser() {
     try {
-      await deleteUser(user.id);
+      setUsers((prevState) =>
+        prevState.filter((state) => state.id !== user.id),
+      );
       toast({
         data: {
           color: 'success',
@@ -37,8 +39,6 @@ export function ModalDelete({
           message: 'Servidor fora do ar!',
         },
       });
-    } finally {
-      getUsers();
     }
   }
 

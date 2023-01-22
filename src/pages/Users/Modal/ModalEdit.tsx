@@ -6,10 +6,9 @@ import {Modal, ModalBody, ModalFooter} from '@/components/Modal';
 import {Select} from '@/components/Select';
 import {optionsBackgroundColor} from '@/utils/mocks/optionsBackgroundColor';
 import {optionsLevel} from '@/utils/mocks/optionsLevel';
-import {getUser, updateUser} from '@/services/v1/user-service';
 import {Button} from '@/components/Button';
 import {InputWrapper, ModalContent, ModalForm} from './styles';
-import {useEffect} from 'react';
+import {Dispatch, SetStateAction, useEffect} from 'react';
 import useCustomToast from '@/hooks/useCustomToast';
 import {NewUserFormData, newUserFormValidationSchema} from '../UserSchema';
 import {UserData} from '..';
@@ -17,11 +16,11 @@ import {UserData} from '..';
 interface ModalEditProps {
   isOpen: boolean;
   toggle: () => void;
-  getUsers: () => Promise<void>;
   user: UserData;
+  setUsers: Dispatch<SetStateAction<UserData[]>>;
 }
 
-export function ModalEdit({isOpen, toggle, getUsers, user}: ModalEditProps) {
+export function ModalEdit({isOpen, toggle, user}: ModalEditProps) {
   const toast = useCustomToast();
   const {
     register,
@@ -50,26 +49,25 @@ export function ModalEdit({isOpen, toggle, getUsers, user}: ModalEditProps) {
 
   useEffect(() => {
     (async () => {
-      const data = await getUser(user.id);
-      const userData: NewUserFormData = {
-        ...data,
-        corDeFundo: getCorDeFundoOption(data.corDeFundo),
-        nivel: getNivelOption(data.nivel),
-      };
-      reset(userData);
+      if (user) {
+        const userData = {
+          ...user,
+          corDeFundo: getCorDeFundoOption(user.corDeFundo),
+          nivel: getNivelOption(user.nivel),
+        };
+        reset(userData);
+      }
     })();
   }, [user]);
 
   async function onSubmit({nivel, corDeFundo, ...rest}: NewUserFormData) {
     try {
-      await updateUser(
-        {
-          ...rest,
-          nivel: nivel.value,
-          corDeFundo: corDeFundo.value,
-        },
-        user.id,
-      );
+      const updateUser = {
+        ...rest,
+        nivel: nivel.value,
+        corDeFundo: corDeFundo.value,
+      };
+
       toast({
         data: {
           color: 'success',
@@ -85,7 +83,6 @@ export function ModalEdit({isOpen, toggle, getUsers, user}: ModalEditProps) {
         },
       });
     } finally {
-      getUsers();
       toggle();
     }
   }
@@ -124,14 +121,20 @@ export function ModalEdit({isOpen, toggle, getUsers, user}: ModalEditProps) {
                 helperText={errors.email?.message?.toString()}
                 error={!!errors.email}
               />
-              <Input
-                labelText="Telefone"
-                {...register('telefone')}
-                mask="(99) 9 9999-9999"
-                setValue={setValue}
-                placeholder="Telefone"
-                helperText={errors.telefone?.message?.toString()}
-                error={!!errors.telefone}
+              <Controller
+                control={control}
+                name="telefone"
+                render={({field}) => (
+                  <Input
+                    {...field}
+                    labelText="Telefone"
+                    mask="(99) 9 9999-9999"
+                    setValue={setValue}
+                    placeholder="Telefone"
+                    helperText={errors.telefone?.message?.toString()}
+                    error={!!errors.telefone}
+                  />
+                )}
               />
               <Input
                 type="password"
