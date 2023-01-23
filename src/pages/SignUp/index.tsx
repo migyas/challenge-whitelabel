@@ -47,7 +47,7 @@ function SignUp() {
       toast({
         data: {
           color: 'success',
-          message: 'O <strong>usuário</strong> foi criado com sucesso!',
+          message: '<strong>Usuário</strong> foi criado com sucesso!',
         },
       });
       navigate('/signin');
