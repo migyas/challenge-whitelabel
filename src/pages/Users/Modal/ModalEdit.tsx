@@ -82,9 +82,10 @@ export function ModalEdit({
         nivel: nivel.value,
         corDeFundo: corDeFundo.value as CorDeFundo,
       };
-
-      users[findIndexUser] = updateUser;
-      localStorage.setItem('users', JSON.stringify(users));
+      if (findIndexUser) {
+        users[findIndexUser] = updateUser;
+        localStorage.setItem('users', JSON.stringify(users));
+      }
       setUsers((prevState) => [...prevState]);
       toast({
         data: {

@@ -44,7 +44,9 @@ function Users() {
 
   useEffect(() => {
     const updateUsers = JSON.parse(localStorage.getItem('users')!);
-    setUsers(updateUsers);
+    if (updateUsers) {
+      setUsers(updateUsers);
+    }
   }, []);
 
   return (
