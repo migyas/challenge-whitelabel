@@ -55,7 +55,7 @@ export const SidebarOverlay = styled.div`
       height: 100%;
       top: 0;
       right: 0;
-      z-index: ${(props) => props.theme.zIndexes['overlay']};
+      z-index: 1000;
     }
   }
 `;
