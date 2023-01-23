@@ -4,6 +4,7 @@ import {Modal, ModalBody, ModalFooter} from '@/components/Modal';
 import useCustomToast from '@/hooks/useCustomToast';
 import {UserData} from '..';
 import {ButtonContainer, ModalContent} from './styles';
+import useUser from '@/hooks/useUser';
 
 interface ModalDeleteProps {
   isOpen: boolean;
@@ -19,12 +20,14 @@ export function ModalDelete({
   setUsers,
 }: ModalDeleteProps) {
   const toast = useCustomToast();
+  const {removeUserInLocalStorage} = useUser();
 
   async function handleDeleteUser() {
     try {
       setUsers((prevState) =>
         prevState.filter((state) => state.id !== user.id),
       );
+      removeUserInLocalStorage(user.id);
       toast({
         data: {
           color: 'success',
