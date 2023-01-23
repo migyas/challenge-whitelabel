@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Pencil, Trash} from 'phosphor-react';
 import useDisclosure from '@/hooks/useDisclosure';
 import {ModalAdd} from './Modal/ModalAdd';
@@ -41,6 +41,11 @@ function Users() {
     gray: 'Cinza (Padrão)',
     blue: 'Azul',
   };
+
+  useEffect(() => {
+    const updateUsers = JSON.parse(localStorage.getItem('users')!);
+    setUsers(updateUsers);
+  }, []);
 
   return (
     <Container>

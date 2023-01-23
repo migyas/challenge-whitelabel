@@ -20,9 +20,9 @@ interface ModalAddProps {
   setUsers: Dispatch<SetStateAction<UserData[]>>;
 }
 
-export function ModalAdd({isOpen, toggle, setUsers}: ModalAddProps) {
+export function ModalAdd({isOpen, toggle}: ModalAddProps) {
   const toast = useCustomToast();
-  const {userLogged} = useUser();
+  const {userLogged, createNewUserInLocalStorage} = useUser();
   const {
     register,
     handleSubmit,
@@ -48,7 +48,8 @@ export function ModalAdd({isOpen, toggle, setUsers}: ModalAddProps) {
         nivel: nivel.value,
         corDeFundo: corDeFundo.value as CorDeFundo,
       };
-      setUsers((prevState) => [...prevState, newUser]);
+      createNewUserInLocalStorage(newUser);
+
       toast({
         data: {
           color: 'success',
