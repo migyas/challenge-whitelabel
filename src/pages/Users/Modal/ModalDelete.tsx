@@ -31,7 +31,7 @@ export function ModalDelete({
       toast({
         data: {
           color: 'success',
-          message: 'O <strong>usuário</strong> foi deletado com sucesso!',
+          message: '<strong>Usuário</strong> foi deletado com sucesso!',
         },
       });
       toggle();

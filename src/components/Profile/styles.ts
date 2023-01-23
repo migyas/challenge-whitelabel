@@ -56,7 +56,7 @@ export const ProfileContainer = styled.div`
     outline: 2px dashed ${(props) => props.theme['green-500']};
   }
 
-  @media (max-width: 450px) {
+  @media (max-width: 675px) {
     width: 3rem;
 
     & header {

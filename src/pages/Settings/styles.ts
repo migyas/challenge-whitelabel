@@ -5,8 +5,8 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
 
-  @media (max-width: 450px) {
-    margin-left: 4rem;
+  @media (max-width: 540px) {
+    margin-left: 3.5rem;
   }
 `;
 
@@ -20,6 +20,10 @@ export const FormContainer = styled.form`
   background: ${(props) => props.theme['white']};
   padding: 2rem;
   border-radius: 5px;
+
+  @media (max-width: 540px) {
+    width: 90%;
+  }
 `;
 
 export const InputWrapper = styled.div`

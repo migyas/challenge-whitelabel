@@ -2,6 +2,7 @@ import animatePresence from '@/components/AnimatePresence';
 import {Button} from '@/components/Button';
 import Input from '@/components/Input';
 import {Select} from '@/components/Select';
+import useCustomToast from '@/hooks/useCustomToast';
 import useUser from '@/hooks/useUser';
 import {optionsBackgroundColor} from '@/utils/mocks/optionsBackgroundColor';
 import {optionsLevel} from '@/utils/mocks/optionsLevel';
@@ -11,14 +12,8 @@ import {CorDeFundo} from '../Users';
 import {NewUserFormData} from '../Users/UserSchema';
 import {Container, FormContainer, InputWrapper} from './styles';
 
-interface SettingsProps {
-  corDeFundo: {
-    label: string;
-    value: string;
-  };
-}
-
 function Settings() {
+  const toast = useCustomToast();
   const {
     control,
     handleSubmit,
@@ -42,18 +37,35 @@ function Settings() {
   }
 
   function onSubmit({corDeFundo, nivel, ...rest}: NewUserFormData) {
-    const findIndexUser = users.findIndex((item) => item.id === userLogged.id);
-    const updateUser = {
-      ...rest,
-      id: userLogged.id,
-      nivel: nivel.value,
-      corDeFundo: corDeFundo.value as CorDeFundo,
-    };
-    users[findIndexUser] = updateUser;
-    localStorage.setItem('users', JSON.stringify(users));
-    setUsers((prevState) => [...prevState]);
-    localStorage.setItem('login', JSON.stringify(updateUser));
-    window.location.reload();
+    try {
+      const findIndexUser = users.findIndex(
+        (item) => item.id === userLogged.id,
+      );
+      const updateUser = {
+        ...rest,
+        id: userLogged.id,
+        nivel: nivel.value,
+        corDeFundo: corDeFundo.value as CorDeFundo,
+      };
+      users[findIndexUser] = updateUser;
+      localStorage.setItem('users', JSON.stringify(users));
+      setUsers((prevState) => [...prevState]);
+      localStorage.setItem('login', JSON.stringify(updateUser));
+      toast({
+        data: {
+          color: 'success',
+          message: '<strong>Usuário</strong> foi alterado com sucesso!',
+        },
+      });
+      window.location.reload();
+    } catch {
+      toast({
+        data: {
+          color: 'error',
+          message: 'Servidor fora do ar',
+        },
+      });
+    }
   }
 
   function optionsLevelFilteredOperator() {

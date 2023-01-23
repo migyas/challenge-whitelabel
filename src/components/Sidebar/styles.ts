@@ -44,7 +44,7 @@ export const SidebarNavItem = styled(NavLink)<BackgroundColorProps>`
 export const SidebarContainer = styled.div``;
 
 export const SidebarOverlay = styled.div`
-  @media (max-width: 450px) {
+  @media (max-width: 540px) {
     &.--expand {
       position: absolute;
       content: ' ';
@@ -55,7 +55,7 @@ export const SidebarOverlay = styled.div`
       height: 100%;
       top: 0;
       right: 0;
-      z-index: 1000;
+      z-index: ${(props) => props.theme.zIndexes['overlay']};
     }
   }
 `;
@@ -206,7 +206,7 @@ export const SidebarContent = styled.div<BackgroundColorProps>`
     }
   }
 
-  @media (max-width: 450px) {
+  @media (max-width: 540px) {
     position: fixed;
 
     z-index: ${(props) => props.theme.zIndexes.sidebar};

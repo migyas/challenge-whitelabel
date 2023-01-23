@@ -89,7 +89,7 @@ export function ModalEdit({
       toast({
         data: {
           color: 'success',
-          message: 'O <strong>usuário</strong> foi alterado com sucesso!',
+          message: '<strong>Usuário</strong> foi alterado com sucesso!',
         },
       });
       reset();
