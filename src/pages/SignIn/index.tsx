@@ -18,7 +18,7 @@ function SignIn() {
     handleSubmit,
     formState: {errors},
   } = useForm<SignInFormData>({
-    mode: 'onBlur',
+    mode: 'onSubmit',
     reValidateMode: 'onBlur',
     resolver: zodResolver(SignInFormValidationSchema),
   });
