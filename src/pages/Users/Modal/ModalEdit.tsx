@@ -30,7 +30,7 @@ export function ModalEdit({
   users,
 }: ModalEditProps) {
   const toast = useCustomToast();
-  const {userLogged} = useUser();
+  const {userLogged, updateUserInLocalStorage} = useUser();
   const {
     register,
     handleSubmit,
@@ -82,7 +82,9 @@ export function ModalEdit({
         nivel: nivel.value,
         corDeFundo: corDeFundo.value as CorDeFundo,
       };
+
       users[findIndexUser] = updateUser;
+      localStorage.setItem('users', JSON.stringify(users));
       setUsers((prevState) => [...prevState]);
       toast({
         data: {

@@ -9,6 +9,7 @@ export default function useUser() {
     saveUserLoginLocalStorage,
     createNewUserInLocalStorage,
     removeUserInLocalStorage,
+    updateUserInLocalStorage,
   } = useContext(UserContext);
 
   return {
@@ -18,5 +19,6 @@ export default function useUser() {
     saveUserLoginLocalStorage,
     createNewUserInLocalStorage,
     removeUserInLocalStorage,
+    updateUserInLocalStorage,
   };
 }

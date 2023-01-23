@@ -5,6 +5,7 @@ export interface UseUserProps {
   users: UserData[];
   userLogged: UserData;
   setUsers: Dispatch<SetStateAction<UserData[]>>;
+  updateUserInLocalStorage: (userIndex: number, userData: UserData) => void;
   removeUserInLocalStorage: (userId: number) => void;
   saveUserLoginLocalStorage: (findUser: UserData) => void;
   createNewUserInLocalStorage: (findUser: UserData) => void;
@@ -21,6 +22,9 @@ export const UserContext = createContext<UseUserProps>({
     console.warn('user context not provider');
   },
   removeUserInLocalStorage() {
+    console.warn('user context not provider');
+  },
+  updateUserInLocalStorage() {
     console.warn('user context not provider');
   },
   users: [],
@@ -53,9 +57,15 @@ export const UserProvider = ({children}: {children?: React.ReactNode}) => {
     users.push(newUser);
     localStorage.setItem('users', JSON.stringify(users));
   };
+
   const removeUserInLocalStorage = (userId: number) => {
     const filteredUser = users.filter((user) => user.id !== userId);
     localStorage.setItem('users', JSON.stringify(filteredUser));
+  };
+
+  const updateUserInLocalStorage = (userIndex: number, userData: UserData) => {
+    users[userIndex] = userData;
+    localStorage.setItem('users', JSON.stringify(users));
   };
 
   const saveUserLoginLocalStorage = (findUserLogged: UserData) => {
@@ -73,6 +83,7 @@ export const UserProvider = ({children}: {children?: React.ReactNode}) => {
         removeUserInLocalStorage,
         saveUserLoginLocalStorage,
         userLogged,
+        updateUserInLocalStorage,
       }}
     >
       {children}
