@@ -53,7 +53,7 @@ export function ModalAdd({isOpen, toggle}: ModalAddProps) {
       toast({
         data: {
           color: 'success',
-          message: '<strong>Usuário</strong> foi criado com sucesso!',
+          message: '<strong>Usuário</strong> criado com sucesso',
         },
       });
       reset();
@@ -61,7 +61,7 @@ export function ModalAdd({isOpen, toggle}: ModalAddProps) {
       toast({
         data: {
           color: 'error',
-          message: 'Servidor fora do ar!',
+          message: 'Servidor fora do ar',
         },
       });
       throw new Error('Servidor fora do ar');

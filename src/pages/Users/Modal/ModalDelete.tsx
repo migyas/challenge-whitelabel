@@ -31,7 +31,7 @@ export function ModalDelete({
       toast({
         data: {
           color: 'success',
-          message: '<strong>Usuário</strong> foi deletado com sucesso!',
+          message: '<strong>Usuário</strong> deletado com sucesso!',
         },
       });
       toggle();
@@ -39,7 +39,7 @@ export function ModalDelete({
       toast({
         data: {
           color: 'error',
-          message: 'Servidor fora do ar!',
+          message: 'Servidor fora do ar',
         },
       });
     }

@@ -54,7 +54,7 @@ function Settings() {
       toast({
         data: {
           color: 'success',
-          message: '<strong>Usuário</strong> foi alterado com sucesso!',
+          message: '<strong>Usuário</strong> alterado com sucesso!',
         },
       });
       window.location.reload();
