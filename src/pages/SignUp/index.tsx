@@ -14,10 +14,13 @@ import {
   NewUserFormData,
   newUserFormValidationSchema,
 } from '../Users/UserSchema';
+import {CorDeFundo} from '../Users';
+import useUser from '@/hooks/useUser';
 
 function SignUp() {
   const navigate = useNavigate();
   const toast = useCustomToast();
+  const {createNewUserInLocalStorage} = useUser();
   const {
     register,
     handleSubmit,
@@ -31,8 +34,22 @@ function SignUp() {
     resolver: zodResolver(newUserFormValidationSchema),
   });
 
-  async function onSubmit() {
+  async function onSubmit({nivel, corDeFundo, ...rest}: NewUserFormData) {
     try {
+      const newUser = {
+        id: new Date().getMilliseconds(),
+        ...rest,
+        nivel: nivel.value,
+        corDeFundo: corDeFundo.value as CorDeFundo,
+      };
+      createNewUserInLocalStorage(newUser);
+
+      toast({
+        data: {
+          color: 'success',
+          message: 'O <strong>usuário</strong> foi criado com sucesso!',
+        },
+      });
       navigate('/signin');
       reset();
     } catch {
@@ -102,7 +119,6 @@ function SignUp() {
         <Controller
           name="corDeFundo"
           control={control}
-          rules={{required: 'Obrigatório'}}
           render={({field}) => (
             <Select
               {...field}

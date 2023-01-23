@@ -29,6 +29,8 @@ function SignIn() {
     const updateUsers = JSON.parse(localStorage.getItem('users')!);
     if (updateUsers) {
       setUsers(updateUsers);
+    } else {
+      setUsers(users);
     }
   }, []);
 
