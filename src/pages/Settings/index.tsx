@@ -27,7 +27,7 @@ function Settings() {
     formState: {errors},
     setValue,
   } = useForm<NewUserFormData | any>();
-  const {userLogged} = useUser();
+  const {userLogged, users, setUsers} = useUser();
 
   function getCorDeFundoOption(value: string) {
     const findCorDeFundo = optionsBackgroundColor.find(
@@ -42,16 +42,16 @@ function Settings() {
   }
 
   function onSubmit({corDeFundo, nivel, ...rest}: NewUserFormData) {
-    // const findIndexUser = users.findIndex((item) => item.id === user.id);
+    const findIndexUser = users.findIndex((item) => item.id === userLogged.id);
     const updateUser = {
       ...rest,
       id: userLogged.id,
       nivel: nivel.value,
       corDeFundo: corDeFundo.value as CorDeFundo,
     };
-    // users[findIndexUser] = updateUser;
-    // localStorage.setItem('users', JSON.stringify(users));
-    // setUsers((prevState) => [...prevState]);
+    users[findIndexUser] = updateUser;
+    localStorage.setItem('users', JSON.stringify(users));
+    setUsers((prevState) => [...prevState]);
     localStorage.setItem('login', JSON.stringify(updateUser));
     window.location.reload();
   }

@@ -32,6 +32,10 @@ function SignIn() {
     }
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem('users', JSON.stringify(users));
+  }, []);
+
   async function onSubmit(data: SignInFormData) {
     const findUserLogged = users.find((user) => user.email === data.email);
     if (findUserLogged) {
