@@ -42,8 +42,6 @@ export const UserProvider = ({children}: {children?: React.ReactNode}) => {
   ]);
 
   const saveUserLoginLocalStorage = (findUserLogged: UserData) => {
-    console.log('entrou aqui');
-
     localStorage.setItem('login', JSON.stringify(findUserLogged));
   };
 
