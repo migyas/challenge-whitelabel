@@ -16,9 +16,7 @@ const BACKGROUND_COLORS__ACTIVE = {
   blue: 'blue-500',
 } as const;
 
-export const MyNavLink = styled(NavLink)``;
-
-export const SidebarNavItem = styled(MyNavLink)<BackgroundColorProps>`
+export const SidebarNavItem = styled(NavLink)<BackgroundColorProps>`
   display: flex;
   align-items: center;
   padding: 1rem;

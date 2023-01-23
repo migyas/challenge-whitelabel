@@ -43,9 +43,13 @@ function Users() {
   };
 
   useEffect(() => {
-    const updateUsers = JSON.parse(localStorage.getItem('users')!);
-    if (updateUsers) {
-      setUsers(updateUsers);
+    const updateUsers: UserData[] = JSON.parse(localStorage.getItem('users')!);
+    const filteredUsers = updateUsers.filter(
+      (item) => item.id !== userLogged.id,
+    );
+
+    if (updateUsers && filteredUsers) {
+      setUsers(filteredUsers);
     }
   }, []);
 

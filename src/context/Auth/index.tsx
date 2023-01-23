@@ -27,7 +27,7 @@ export const AuthProvider = ({children}: {children?: React.ReactNode}) => {
 
   const handleLogout = async () => {
     try {
-      localStorage.clear();
+      localStorage.removeItem('login');
       redirect('/signin');
       window.location.reload();
     } catch (err) {

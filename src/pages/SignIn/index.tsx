@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {NavLink} from 'react-router-dom';
 import genericLogo from '@/assets/logo-generic.svg';
@@ -12,7 +12,7 @@ import {FormContainer, SignContainer} from './styles';
 import useUser from '@/hooks/useUser';
 
 function SignIn() {
-  const {users, saveUserLoginLocalStorage} = useUser();
+  const {users, saveUserLoginLocalStorage, setUsers} = useUser();
   const {
     register,
     handleSubmit,
@@ -24,6 +24,13 @@ function SignIn() {
   });
   const [error, setError] = useState<Error | null>(null);
   const {handleLogin} = useAuth();
+
+  useEffect(() => {
+    const updateUsers = JSON.parse(localStorage.getItem('users')!);
+    if (updateUsers) {
+      setUsers(updateUsers);
+    }
+  }, []);
 
   async function onSubmit(data: SignInFormData) {
     const findUserLogged = users.find((user) => user.email === data.email);
