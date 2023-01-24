@@ -39,7 +39,9 @@ function SignIn() {
   }, []);
 
   async function onSubmit(data: SignInFormData) {
-    const findUserLogged = users.find((user) => user.email === data.email);
+    const findUserLogged = users.find(
+      (user) => user.email === data.email && user.senha === data.senha,
+    );
     if (findUserLogged) {
       handleLogin();
       saveUserLoginLocalStorage(findUserLogged);
