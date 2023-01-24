@@ -8,8 +8,8 @@ export const Container = styled.div`
   height: 100%;
   gap: 2rem;
 
-  @media (max-width: 450px) {
-    margin-left: 4rem;
+  @media (max-width: 540px) {
+    margin-left: 3.5rem;
   }
 `;
 

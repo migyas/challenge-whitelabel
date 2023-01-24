@@ -25,18 +25,14 @@ function SignIn() {
   const [error, setError] = useState<Error | null>(null);
   const {handleLogin} = useAuth();
 
-  useEffect(() => {
-    const updateUsers = JSON.parse(localStorage.getItem('users')!);
-    if (updateUsers) {
-      setUsers(updateUsers);
-    } else {
-      setUsers(users);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('users', JSON.stringify(users));
-  }, []);
+  // useEffect(() => {
+  //   const updateUsers = JSON.parse(localStorage.getItem('users')!);
+  //   if (updateUsers) {
+  //     setUsers(updateUsers);
+  //   } else {
+  //     setUsers(users);
+  //   }
+  // }, []);
 
   async function onSubmit(data: SignInFormData) {
     const findUserLogged = users.find(
@@ -52,6 +48,8 @@ function SignIn() {
       });
     }
   }
+
+  console.log(users);
 
   return (
     <SignContainer>

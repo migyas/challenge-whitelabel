@@ -26,6 +26,7 @@ interface VariantsType {
 
 function Users() {
   const {users, setUsers, userLogged} = useUser();
+  const [usersFiltered, setUsersFiltered] = useState<UserData[]>([]);
   const [user, setUser] = useState<UserData>({} as UserData);
   const {isOpen: isOpenModalAdd, toggle: toggleModalAdd} = useDisclosure();
   const {isOpen: isOpenModalEdit, toggle: toggleModalEdit} = useDisclosure();
@@ -49,9 +50,9 @@ function Users() {
     );
 
     if (updateUsers && filteredUsers) {
-      setUsers(filteredUsers);
+      setUsersFiltered(filteredUsers);
     }
-  }, []);
+  }, [users]);
 
   return (
     <Container>
@@ -73,8 +74,8 @@ function Users() {
             </tr>
           </thead>
           <tbody>
-            {users.length > 0 ? (
-              users.map((user) => {
+            {usersFiltered.length > 0 ? (
+              usersFiltered.map((user) => {
                 return (
                   <tr key={user.id}>
                     <td>{user.nome}</td>

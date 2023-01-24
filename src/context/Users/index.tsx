@@ -1,5 +1,11 @@
 import {UserData} from '@/pages/Users';
-import {createContext, Dispatch, SetStateAction, useState} from 'react';
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
 
 export interface UseUserProps {
   users: UserData[];
@@ -52,10 +58,20 @@ export const UserProvider = ({children}: {children?: React.ReactNode}) => {
       id: 2,
     },
   ]);
+  const usersCurrent = JSON.parse(localStorage.getItem('users')!);
+
+  useEffect(() => {
+    if (!usersCurrent) {
+      localStorage.setItem('users', JSON.stringify(users));
+    } else {
+      setUsers(usersCurrent);
+    }
+  }, []);
 
   const createNewUserInLocalStorage = (newUser: UserData) => {
     users.push(newUser);
     localStorage.setItem('users', JSON.stringify(users));
+    setUsers(usersCurrent);
   };
 
   const removeUserInLocalStorage = (userId: number) => {
@@ -66,6 +82,7 @@ export const UserProvider = ({children}: {children?: React.ReactNode}) => {
   const updateUserInLocalStorage = (userIndex: number, userData: UserData) => {
     users[userIndex] = userData;
     localStorage.setItem('users', JSON.stringify(users));
+    setUsers(usersCurrent);
   };
 
   const saveUserLoginLocalStorage = (findUserLogged: UserData) => {
